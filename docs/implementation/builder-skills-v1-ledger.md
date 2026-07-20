@@ -181,7 +181,19 @@ Milestone 2B forward evaluation checkpoint on 2026-07-21:
 - The HubSpot run exposed a real platform gap: current Project Secrets manifest validation does not yet accept optional `documentationUrl`; later integration work must add that forward-compatible schema/UI support before the optional field is emitted.
 - The successful Panchang forward evaluation remains a Milestone 8 gate. Its current blocked result is expected safety behavior, not feature completion.
 
-Milestone 2 remains in progress. Next action: implement the Control Plane, AI, and Client vertical path required to run these skills through a real pinned conversation; do not spend more time expanding factory content before that path works.
+Milestone 2 remains in progress. Next action: implement the Control Plane, AI, and Client vertical path required to run these skills through a real pinned conversation.
+
+Milestone 9 factory-source expansion checkpoint on 2026-07-21:
+
+- Expanded the runtime catalog from the three evaluated slices to the approved complete inventory: exactly 90 ordered public intents, all 11 ordered UI categories, and exactly 29 private internal skills. Public aliases, examples, category mapping, internal-skill mapping, and tool dependencies are copied deterministically from `docs/research/skill-inventory-v1.json` by `npm run sync:catalog`.
+- Preserved the eight previously evaluated skill entries and their three declared references without editing their instruction files or weakening their constraints. Their catalog descriptions/resources are fixed inputs to the deterministic sync rather than inferred from a mutable generated catalog.
+- Added 21 concise operational AgentSkills for navigation/search, EmDash content releases, localization, SEO/AEO, governed assets, media, forms, analytics, commerce, booking, portals, customer accounts, wallet/chat, chart experiences, reports/AI chat, notifications, D1 integrity, generated admin security, and diagnosis. Each requires target-repository inspection, a bounded realistic implementation, existing AstroPages ownership/security contracts, proportionate tests, and explicit evidence/limitations; none claims provider or deployment success from scaffolding.
+- Added targeted full-catalog regressions for exact 90/29 inventory alignment, every reverse intent-to-skill mapping, all 11 non-empty categories with stable icons/order, public/private copy separation, operational instruction coverage for all new skills, absence of legacy generated-site branding, and absence of literal credential values. Updated the representative-slice regression to remain exact within the expanded catalog.
+- TDD RED: `node --test tests/full-catalog.test.mjs` exited 1 with 0/4 tests passing against the three-intent/eight-skill catalog; after deterministic catalog generation it still failed on the first absent new `SKILL.md`. GREEN: the focused catalog/slice suite passed 13/13 and the clean-HEAD full suite passed 94/94.
+- All 29 folders passed the Skill Creator `quick_validate.py`. The factory validator reported 11 categories / 90 intents / 29 skills; the source safety scan passed all 37 source files; the checkout-backed evidence audit passed all three pinned template records; `npm audit` reported zero vulnerabilities; and `git diff --check` passed.
+- Exact clean commit `734dd3c71c80b9b7512d8ba85a71b078b1379c72` passed reproducibility and build with 35 bundle payload files, `contentSha256=c0810a7c57b86d1df5ca7345db86d9b834b53c06391011ac406b94057c0be115`, and `artifactSha256=80ad51cddbcf7281c0af8a8f8df9425dfed331aec83be26cf6a3179afd33b90d`.
+
+This completes the authored Factory catalog expansion only. Release publication, Control Plane promotion, AI loading, Client exposure, MCP-backed Panchang success, canary evidence, and legacy removal remain separate gates and are not implied by this checkpoint.
 
 ## Milestone index
 
