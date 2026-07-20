@@ -1,4 +1,35 @@
 {
   "schemaVersion": "1",
-  "intents": []
+  "intents": [
+    {
+      "key": "refresh-homepage",
+      "label": "Refresh homepage",
+      "categoryKey": "website-design",
+      "description": "Refresh an existing homepage while preserving content, bindings, and brand inputs.",
+      "aliases": ["modernize the homepage", "redesign my home page"],
+      "userExamples": ["Refresh my homepage without changing the copy."],
+      "internalSkills": ["generated-site-discovery-and-routing", "astro-ui-and-design-system", "responsive-accessibility-and-performance"],
+      "toolDependencies": ["none"]
+    },
+    {
+      "key": "add-daily-panchang",
+      "label": "Add daily Panchang",
+      "categoryKey": "astrology-experiences",
+      "description": "Add a location- and date-aware Panchang experience without unsupported accuracy claims.",
+      "aliases": ["create a vedic almanac", "show today's panchang", "daily panchang"],
+      "userExamples": ["Add a Daily Panchang for the visitor's location."],
+      "internalSkills": ["astrology-provider-adapters", "horoscope-panchang-numerology-and-tarot"],
+      "toolDependencies": ["astrologyapi-mcp", "project-secrets"]
+    },
+    {
+      "key": "integrate-unsupported-provider",
+      "label": "Integrate unsupported provider",
+      "categoryKey": "integrations-and-automation",
+      "description": "Research and implement an unbundled vendor integration through the required server-side Project Secrets flow.",
+      "aliases": ["connect an unknown service", "add a new external vendor"],
+      "userExamples": ["Connect this site to a provider that is not in the catalog."],
+      "internalSkills": ["research-external-integrations", "integrations-webhooks-automation-and-consent", "runtime-config-secrets-and-provider-readiness"],
+      "toolDependencies": ["official-web-research", "project-secrets"]
+    }
+  ]
 }

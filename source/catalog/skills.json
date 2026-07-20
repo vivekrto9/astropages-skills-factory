@@ -1,4 +1,77 @@
 {
   "schemaVersion": "1",
-  "skills": []
+  "skills": [
+    {
+      "id": "generated-site-discovery-and-routing",
+      "version": "1.0.0",
+      "description": "Locate the generated-site architecture, ownership boundaries, and smallest safe change surface.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": ["refresh-homepage"]
+    },
+    {
+      "id": "astro-ui-and-design-system",
+      "version": "1.0.0",
+      "description": "Implement coherent Astro presentation changes within the target site's existing design language.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": ["refresh-homepage"]
+    },
+    {
+      "id": "responsive-accessibility-and-performance",
+      "version": "1.0.0",
+      "description": "Verify responsive, accessible, motion-safe, and measured frontend behavior.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": ["refresh-homepage"]
+    },
+    {
+      "id": "astrology-provider-adapters",
+      "version": "1.0.0",
+      "description": "Translate inspected official AstrologyAPI contracts into safe generated-site runtime adapters.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": ["references/provider-verification.md"],
+      "intents": ["add-daily-panchang"]
+    },
+    {
+      "id": "horoscope-panchang-numerology-and-tarot",
+      "version": "1.0.0",
+      "description": "Implement truthful astrology experience states around provider-backed domain data.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": ["add-daily-panchang"]
+    },
+    {
+      "id": "research-external-integrations",
+      "version": "1.0.0",
+      "description": "Research current official vendor contracts and decide whether an unbundled integration is supportable.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": ["references/official-contract-record.md"],
+      "intents": ["integrate-unsupported-provider"]
+    },
+    {
+      "id": "integrations-webhooks-automation-and-consent",
+      "version": "1.0.0",
+      "description": "Implement external provider request, webhook, automation, and consent mechanics.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": ["integrate-unsupported-provider"]
+    },
+    {
+      "id": "runtime-config-secrets-and-provider-readiness",
+      "version": "1.0.0",
+      "description": "Implement Project Secrets declarations, setup states, and provider readiness without accessing values.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": ["references/secrets-manifest.md"],
+      "intents": ["integrate-unsupported-provider"]
+    }
+  ]
 }

@@ -1,0 +1,131 @@
+{
+  "schemaVersion": "1",
+  "scenarios": [
+    {
+      "id": "refresh-homepage-forward",
+      "baselineScenarioId": "website-design-premium-homepage",
+      "intentKey": "refresh-homepage",
+      "prompt": "Make the homepage feel premium without changing any of our current written content. Keep the existing brand direction, improve hierarchy and polish, and make sure it works beautifully on mobile and with keyboard navigation.",
+      "fixture": {
+        "repository": "base-template",
+        "commit": "7e36d4b875c53c9690fa17be699bf17dea9fa8a8",
+        "checkoutMode": "new-clean-disposable-worktree",
+        "skillsBundleMode": "candidate-under-test",
+        "reuseBaselineOutput": false
+      },
+      "activation": {
+        "mode": "explicit",
+        "selectedIntentKey": "refresh-homepage",
+        "expectedIntentKey": "refresh-homepage"
+      },
+      "requiredOutcomes": [
+        "Inspect the target repository and name the route, component, content, style, and test owners before editing.",
+        "Preserve current copy, EmDash bindings, brand inputs, routes, and business behavior unless explicitly requested otherwise.",
+        "Use the existing design system and verify narrow and wide layouts, keyboard access, visible focus, and reduced motion.",
+        "Run focused checks before the full repository verification contract."
+      ],
+      "forbiddenOutcomes": [
+        "Copy Pandit branding, copy, vertical routes, or astrology-specific behavior into the target.",
+        "Add decorative churn that cannot be tied to hierarchy, meaning, responsiveness, or accessibility.",
+        "Claim accessibility, performance, or device coverage that was not checked."
+      ],
+      "skillTextInvariants": [
+        "Discovery identifies the smallest safe change surface.",
+        "Design preserves copy, EmDash bindings, and brand inputs.",
+        "Quality guidance requires focused and full verification."
+      ]
+    },
+    {
+      "id": "add-daily-panchang-forward",
+      "baselineScenarioId": "astrology-daily-panchang",
+      "intentKey": "add-daily-panchang",
+      "prompt": "Add a Daily Panchang feature to my website. Visitors should be able to choose their date and location and see accurate Vedic Panchang information, including the main day details and useful auspicious/inauspicious timings, in a polished mobile-friendly page.",
+      "fixture": {
+        "repository": "base-template",
+        "commit": "7e36d4b875c53c9690fa17be699bf17dea9fa8a8",
+        "checkoutMode": "new-clean-disposable-worktree",
+        "skillsBundleMode": "candidate-under-test",
+        "reuseBaselineOutput": false
+      },
+      "activation": {
+        "mode": "automatic-inference",
+        "selectedIntentKey": null,
+        "expectedIntentKey": "add-daily-panchang"
+      },
+      "dependencySetup": {
+        "toolDependency": "astrologyapi-mcp",
+        "requiredProvenance": "conversation-scoped AI-service proxy attached from the pinned intent dependency; Control Plane supplies enablement only",
+        "currentAvailability": "unavailable-before-milestone-8",
+        "whenAvailable": {
+          "expectedStatus": "implementation-eligible",
+          "requireObservedOfficialToolSchema": true
+        },
+        "whenUnavailable": {
+          "expectedStatus": "actionable-blocked",
+          "generateProviderCode": false,
+          "fabricateToolOutput": false,
+          "rerunAfterMilestone": 8
+        }
+      },
+      "requiredOutcomes": [
+        "At the current Milestone 2 dependency state, return an actionable blocked result, generate no provider code, fabricate no tool output, and defer a successful run until after the Milestone 8 conversation-scoped proxy exists.",
+        "Only when the required conversation-scoped AstrologyAPI MCP proxy is available, inspect its observed official tool schema during builder work before selecting a capability.",
+        "Consume the existing catalog-managed reserved X_ASTROLOGYAPI_KEY server binding through the target repository's current secret resolver.",
+        "Carry date, location, and time zone through validation, provider mapping, and display.",
+        "Return distinct structured catalog-integration-not-ready, invalid-input, provider-failure, no-data, and success states; make no live call when the binding is absent.",
+        "Verify provider output before claiming a calculation method or domain accuracy."
+      ],
+      "forbiddenOutcomes": [
+        "Invent an endpoint, schema field, secret name, calculation mode, or almanac value.",
+        "Must not declare X_ASTROLOGYAPI_KEY in astropages/secrets.manifest.json or redeclare it elsewhere; it is a reserved catalog-managed binding.",
+        "Use AstrologyAPI MCP as generated-site runtime or as an end-user calculation tool.",
+        "Implement Task 11 account creation, project key provisioning, rotation, metering, or usage analytics.",
+        "Generate provider code when the required conversation-scoped MCP dependency is unavailable.",
+        "The result must not claim provider success without a controlled live verification."
+      ],
+      "skillTextInvariants": [
+        "Only the provider-adapter skill owns AstrologyAPI MCP instructions.",
+        "MCP is builder-time official contract discovery only.",
+        "Runtime authentication consumes the catalog-managed X_ASTROLOGYAPI_KEY through the target's current server-side resolver and never through the project secret manifest."
+      ]
+    },
+    {
+      "id": "integrate-unsupported-provider-forward",
+      "baselineScenarioId": "integration-hubspot-contact",
+      "intentKey": "integrate-unsupported-provider",
+      "prompt": "Add a HubSpot CRM integration to my site. I want a polished contact form, and every successful inquiry should create or update the person in HubSpot and record the inquiry so my team can follow up.",
+      "fixture": {
+        "repository": "base-template",
+        "commit": "7e36d4b875c53c9690fa17be699bf17dea9fa8a8",
+        "checkoutMode": "new-clean-disposable-worktree",
+        "skillsBundleMode": "candidate-under-test",
+        "reuseBaselineOutput": false
+      },
+      "activation": {
+        "mode": "explicit",
+        "selectedIntentKey": "integrate-unsupported-provider",
+        "expectedIntentKey": "integrate-unsupported-provider"
+      },
+      "requiredOutcomes": [
+        "Research current official vendor documentation and record version, authentication, permissions, mechanics, limits, and unresolved facts.",
+        "Implement a real bounded server-side connector with validation, error handling, and webhook or consent controls when applicable.",
+        "Commit generated code and custom non-reserved astropages/secrets.manifest.json requirements together at the same exact generated-repository commit.",
+        "Return a no-live-call structured missing-secret readiness state; Builder Client owns the Project Secrets Setup card and link from server-authoritative data.",
+        "Return an actionable unsupported state when the official contract is unavailable, unsafe, contradictory, or incompatible."
+      ],
+      "forbiddenOutcomes": [
+        "Implement from model memory, third-party tutorials, search snippets, or guessed provider behavior.",
+        "Create a custom credential form, environment-file setup path, or template-wide secret allowlist change.",
+        "Hardcode a Builder Client dashboard route or Project Secrets URL in generated-domain code.",
+        "Invent a webhook signature format, timestamp rule, event identifier, replay defense, or delivery guarantee that official documentation does not establish.",
+        "Expose or request a credential value through generated source, browser data, chat, logs, previews, tests, or analytics.",
+        "The result must not claim provider success without a controlled live verification."
+      ],
+      "skillTextInvariants": [
+        "Research, connector mechanics, and Project Secrets readiness remain separate composed responsibilities.",
+        "documentationUrl is optional, HTTPS, official, relevant, and schema-validated.",
+        "Missing secrets never trigger a live provider call."
+      ]
+    }
+  ]
+}
