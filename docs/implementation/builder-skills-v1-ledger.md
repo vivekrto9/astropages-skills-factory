@@ -51,6 +51,16 @@ The authored and runtime implementation is complete on feature branches. It is n
 
 No live release, production mutation, stable pointer move, canary claim, or legacy removal is recorded at this checkpoint.
 
+Draft review branches were pushed and opened without merging:
+
+- Factory: `vivekrto9/astropages-skills-factory#1`
+- Control Plane: `VedicRishiAstro/astropages-control-plane-service#48`
+- Client: `VedicRishiAstro/astropages-client#20`
+- Admin: `VedicRishiAstro/astropages-admin#3`
+- AI service: `VedicRishiAstro/astropages-ai-service#37`
+
+At the first remote snapshot, AI `Build and Test` passed and its deploy job correctly skipped for the draft; the other product drafts reported only the skipped/pass CodeRabbit draft check. Factory reported no GitHub checks by design; its authoritative `skills_ci` will exist only after the exact repository is activated in the central Woodpecker installation. This is an explicit deployment gate, not a green-CI claim.
+
 ## Checkpoint — 2026-07-20
 
 Status: **Milestones 0–1 complete; Milestone 2 in progress**
