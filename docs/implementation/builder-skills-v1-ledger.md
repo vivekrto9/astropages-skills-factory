@@ -23,7 +23,7 @@ This is the durable resume point for the cross-repository Builder Skills v1 prog
 
 ## Checkpoint — 2026-07-20
 
-Status: **Milestone 0 complete; Milestone 1 next**
+Status: **Milestone 0 complete; Milestone 1 in progress**
 
 Default-branch starting SHAs:
 
@@ -75,12 +75,24 @@ Not completed or claimed:
 
 - No factory schema, skill content, pipeline, bundle, runtime integration, UI, release, migration, canary, deployment, or legacy removal has been implemented.
 
-Next action: begin Milestone 1 audit/baseline work.
+Milestone 1 audit part 1 completed on 2026-07-20:
+
+- Audited all 26 current template manifests under `/Users/alokprasad/Desktop/Vedic-Rishi/astropages/templates`, recorded each 7-character repository HEAD, and checked existence of representative source paths.
+- Recorded manifest-backed family evidence, implemented/placeholder distinctions, shared-platform versus vertical boundaries, the Pandit behavioral-reference/branding boundary, and the neutral base core in `docs/research/template-feature-audit-2026-07-20.md`.
+- Recorded evidence for the first Website Design, Panchang, and unsupported-integration slices without claiming source/runtime correctness.
+- Treated legacy capability declarations as deprecated evidence only.
+- Part 1 specification review: **APPROVED** on 2026-07-20.
+- Part 1 quality review: **APPROVED** on 2026-07-20.
+- Part 1 closeout verification: `git diff --check` — exit 0.
+
+Milestone 1 is not complete: native repository/service baselines, dependency/integration/secrets-flow baselines, source-level parity review, and the final granular-intent/internal-skill inventory remain outstanding.
+
+Next action: complete Milestone 1 baselines and inventory without converting research family labels or legacy capability declarations into factory architecture.
 
 ## Milestone index
 
 0. Grounding and documentation — **complete**
-1. Audit and baselines — **next**
+1. Audit and baselines — **in progress** (audit part 1 complete; baselines and inventory remain)
 2. Factory plus three slices
 3. Control Plane
 4. Woodpecker
