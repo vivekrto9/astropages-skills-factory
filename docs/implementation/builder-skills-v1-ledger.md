@@ -99,14 +99,25 @@ Milestone 1 no-skill builder baselines completed on 2026-07-20:
 - Baseline-record validation confirmed JSON parsing and required schema shape, stable run/task provenance, numeric diff metrics, stable rubric findings, and all three output content digests against the current modified-plus-untracked file sets — exit 0.
 - Baseline-record closeout verification: `git diff --check` — exit 0.
 
-Milestone 1 is not complete: the final granular-intent/internal-skill inventory and the current integration/Project Secrets flow audit remain outstanding. Source-level parity questions that affect that inventory must be resolved there rather than inferred from legacy capability labels.
+Milestone 1 current Builder Skills and Project Secrets flow audit completed on 2026-07-20:
 
-Next action: finish the Milestone 1 intent/internal-skill inventory and current integration/Project Secrets flow audit without converting research family labels or legacy capability declarations into factory architecture.
+- Audited the current Control Plane, Client, AI, and relevant Admin source at the unchanged checkpoint commits and recorded exact tables, relevant skill-selection/session-message and Project Secrets routes, modules, synchronization triggers, propagation boundaries, and v1 reuse/replacement decisions in `docs/research/current-builder-skills-and-secrets-flow-2026-07-20.md`.
+- Confirmed that Control Plane owns both current worker-manifest pull synchronization and generated-repository secret-manifest synchronization. Secret manifests are read from the exact deployment commit: after a ready preview callback and before production dispatch.
+- Confirmed that current Client-selected skills are validated against `builder_chat_sessions.skill_snapshot` but reach AI only as prompt text, while AI independently loads project/shared skills through OpenHands SDK 1.24 and a read-only shared volume.
+- Confirmed the current Project Secrets value boundary: Client writes values through the authenticated project API; Cloudflare Secret Store holds the runtime bundle; AI receives key metadata only. Optional `documentationUrl` is not currently accepted or rendered.
+- Recorded the reusable EmDash per-conversation MCP proxy pattern and the current five Woodpecker purposes plus configuration-extension/trusted-deployer modules; no current `skills_ci` or `skills_release` purpose exists.
+- Current-flow audit specification review: **APPROVED** on 2026-07-20.
+- Current-flow audit quality review: **APPROVED** on 2026-07-20.
+- Current-flow audit closeout verification: `git diff --check` — exit 0.
+
+Milestone 1 is not complete: only the final granular-intent/internal-skill inventory remains outstanding. Source-level parity questions that affect that inventory must be resolved there rather than inferred from legacy capability labels.
+
+Next action: finish the Milestone 1 granular-intent/internal-skill inventory without converting research family labels or legacy capability declarations into factory architecture.
 
 ## Milestone index
 
 0. Grounding and documentation — **complete**
-1. Audit and baselines — **in progress** (template audit and three no-skill baselines complete; final inventory and current integration/Project Secrets flow audit remain)
+1. Audit and baselines — **in progress** (template audit, three no-skill baselines, and current-flow audit complete; only the final inventory remains)
 2. Factory plus three slices
 3. Control Plane
 4. Woodpecker
