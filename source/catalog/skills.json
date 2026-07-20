@@ -8,7 +8,13 @@
       "compatibleAiRuntime": ">=1.24.0 <1.25.0",
       "entry": "SKILL.md",
       "resources": [],
-      "intents": ["refresh-homepage"]
+      "intents": [
+        "refresh-homepage",
+        "create-landing-page",
+        "add-site-search",
+        "diagnose-build-failure",
+        "fix-broken-page"
+      ]
     },
     {
       "id": "astro-ui-and-design-system",
@@ -17,7 +23,17 @@
       "compatibleAiRuntime": ">=1.24.0 <1.25.0",
       "entry": "SKILL.md",
       "resources": [],
-      "intents": ["refresh-homepage"]
+      "intents": [
+        "refresh-homepage",
+        "create-landing-page",
+        "apply-brand-theme",
+        "improve-layout-hierarchy",
+        "improve-mobile-layout",
+        "update-icons-and-favicons",
+        "create-campaign-page",
+        "create-product-page",
+        "build-account-dashboard"
+      ]
     },
     {
       "id": "responsive-accessibility-and-performance",
@@ -26,7 +42,260 @@
       "compatibleAiRuntime": ">=1.24.0 <1.25.0",
       "entry": "SKILL.md",
       "resources": [],
-      "intents": ["refresh-homepage"]
+      "intents": [
+        "refresh-homepage",
+        "create-landing-page",
+        "improve-layout-hierarchy",
+        "build-responsive-navigation",
+        "improve-mobile-layout",
+        "improve-accessibility",
+        "optimize-images",
+        "build-media-gallery",
+        "add-contact-form",
+        "improve-conversion-flow",
+        "improve-site-performance"
+      ]
+    },
+    {
+      "id": "navigation-search-and-routing",
+      "version": "1.0.0",
+      "description": "Implement site navigation, public route relationships, and search experiences.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "build-responsive-navigation",
+        "add-site-search",
+        "add-blog-section",
+        "add-language",
+        "create-sitemap",
+        "improve-internal-linking",
+        "add-product-catalog",
+        "create-service-catalog",
+        "build-advisor-directory",
+        "add-customer-signin",
+        "fix-broken-page"
+      ]
+    },
+    {
+      "id": "emdash-content-and-release",
+      "version": "1.0.0",
+      "description": "Edit governed content and operate the existing EmDash-backed content release lifecycle.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "edit-page-copy",
+        "publish-content-update",
+        "add-blog-section",
+        "localize-site",
+        "manage-locale-fallbacks",
+        "create-faq-content",
+        "prepare-content-draft",
+        "optimize-local-search",
+        "prepare-ai-answer-content"
+      ]
+    },
+    {
+      "id": "localization-and-locale-lifecycle",
+      "version": "1.0.0",
+      "description": "Implement locale-aware content, routes, fallbacks, and lifecycle behavior.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "localize-site",
+        "add-language",
+        "manage-locale-fallbacks"
+      ]
+    },
+    {
+      "id": "seo-aeo-and-structured-data",
+      "version": "1.0.0",
+      "description": "Implement accurate search, answer-engine, metadata, sitemap, and structured-data improvements.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "create-faq-content",
+        "update-page-metadata",
+        "add-structured-data",
+        "create-sitemap",
+        "improve-internal-linking",
+        "optimize-local-search",
+        "add-faq-schema",
+        "prepare-ai-answer-content",
+        "audit-indexability"
+      ]
+    },
+    {
+      "id": "project-assets-r2-and-mcp",
+      "version": "1.0.0",
+      "description": "Use governed project assets, manifests, R2 storage, and project-assets tooling safely.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "upload-project-assets",
+        "replace-images",
+        "create-hero-image",
+        "add-video-gallery",
+        "build-media-gallery",
+        "update-icons-and-favicons",
+        "audit-missing-assets"
+      ]
+    },
+    {
+      "id": "media-generation-and-optimization",
+      "version": "1.0.0",
+      "description": "Create, transform, and optimize visual media for accessible responsive delivery.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "replace-images",
+        "create-hero-image",
+        "optimize-images",
+        "add-video-gallery",
+        "build-media-gallery"
+      ]
+    },
+    {
+      "id": "forms-leads-and-newsletters",
+      "version": "1.0.0",
+      "description": "Build validated accessible forms, lead capture, and newsletter signup flows.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "add-contact-form",
+        "add-newsletter-signup",
+        "create-campaign-page",
+        "route-new-leads",
+        "improve-conversion-flow"
+      ]
+    },
+    {
+      "id": "analytics-events-and-business-insights",
+      "version": "1.0.0",
+      "description": "Define privacy-aware analytics events, funnels, and business insight views.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "configure-conversion-events",
+        "add-marketing-dashboard",
+        "create-campaign-page",
+        "add-cookie-consent",
+        "improve-conversion-flow"
+      ]
+    },
+    {
+      "id": "product-catalog-and-merchandising",
+      "version": "1.0.0",
+      "description": "Implement product catalogs, product pages, pricing presentation, and merchandising structures.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "add-product-catalog",
+        "create-product-page",
+        "add-consultation-packages"
+      ]
+    },
+    {
+      "id": "cart-wishlist-orders-and-fulfillment",
+      "version": "1.0.0",
+      "description": "Implement cart, wishlist, order history, and fulfillment state workflows.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "add-shopping-cart",
+        "add-wishlist",
+        "add-checkout",
+        "add-order-tracking",
+        "configure-fulfillment",
+        "add-order-history"
+      ]
+    },
+    {
+      "id": "checkout-payments-and-webhooks",
+      "version": "1.0.0",
+      "description": "Implement checkout, server-side payment boundaries, and payment webhook processing.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "add-checkout",
+        "connect-payment-provider"
+      ]
+    },
+    {
+      "id": "service-catalog-booking-and-availability",
+      "version": "1.0.0",
+      "description": "Implement service listings, booking journeys, schedules, capacity, and availability.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "create-service-catalog",
+        "add-booking-flow",
+        "configure-availability",
+        "add-consultation-packages",
+        "create-booking-portal",
+        "add-booking-reminders"
+      ]
+    },
+    {
+      "id": "advisor-marketplace-and-portals",
+      "version": "1.0.0",
+      "description": "Implement advisor discovery and protected advisor/customer marketplace portals.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "build-advisor-directory",
+        "create-advisor-portal",
+        "create-booking-portal"
+      ]
+    },
+    {
+      "id": "customer-auth-accounts-and-privacy",
+      "version": "1.0.0",
+      "description": "Implement customer identity, sessions, account data, and privacy controls.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "add-wishlist",
+        "add-order-tracking",
+        "add-booking-flow",
+        "create-advisor-portal",
+        "create-booking-portal",
+        "add-customer-signup",
+        "add-customer-signin",
+        "build-account-dashboard",
+        "add-profile-settings",
+        "add-privacy-controls",
+        "add-customer-wallet",
+        "add-customer-chat",
+        "add-order-history",
+        "configure-integration-consent",
+        "fix-auth-access"
+      ]
+    },
+    {
+      "id": "wallet-chat-and-community",
+      "version": "1.0.0",
+      "description": "Implement account-scoped wallet, messaging, and community interaction patterns.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "add-customer-wallet",
+        "add-customer-chat"
+      ]
     },
     {
       "id": "astrology-provider-adapters",
@@ -34,8 +303,35 @@
       "description": "Translate inspected official AstrologyAPI contracts into safe generated-site runtime adapters.",
       "compatibleAiRuntime": ">=1.24.0 <1.25.0",
       "entry": "SKILL.md",
-      "resources": ["references/provider-verification.md"],
-      "intents": ["add-daily-panchang"]
+      "resources": [
+        "references/provider-verification.md"
+      ],
+      "intents": [
+        "add-birth-chart",
+        "add-transit-forecast",
+        "add-synastry",
+        "add-compatibility",
+        "add-daily-horoscope",
+        "add-daily-panchang",
+        "add-numerology-calculator",
+        "add-tarot-reading",
+        "create-astrology-report",
+        "add-astrology-ai-chat"
+      ]
+    },
+    {
+      "id": "charts-transits-synastry-and-compatibility",
+      "version": "1.0.0",
+      "description": "Implement chart, transit, synastry, and compatibility domain experiences.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "add-birth-chart",
+        "add-transit-forecast",
+        "add-synastry",
+        "add-compatibility"
+      ]
     },
     {
       "id": "horoscope-panchang-numerology-and-tarot",
@@ -44,16 +340,24 @@
       "compatibleAiRuntime": ">=1.24.0 <1.25.0",
       "entry": "SKILL.md",
       "resources": [],
-      "intents": ["add-daily-panchang"]
+      "intents": [
+        "add-daily-horoscope",
+        "add-daily-panchang",
+        "add-numerology-calculator",
+        "add-tarot-reading"
+      ]
     },
     {
-      "id": "research-external-integrations",
+      "id": "astrology-reports-and-ai-chat",
       "version": "1.0.0",
-      "description": "Research current official vendor contracts and decide whether an unbundled integration is supportable.",
+      "description": "Implement persisted astrology reports and data-grounded conversational explanations.",
       "compatibleAiRuntime": ">=1.24.0 <1.25.0",
       "entry": "SKILL.md",
-      "resources": ["references/official-contract-record.md"],
-      "intents": ["integrate-unsupported-provider"]
+      "resources": [],
+      "intents": [
+        "create-astrology-report",
+        "add-astrology-ai-chat"
+      ]
     },
     {
       "id": "integrations-webhooks-automation-and-consent",
@@ -62,7 +366,34 @@
       "compatibleAiRuntime": ">=1.24.0 <1.25.0",
       "entry": "SKILL.md",
       "resources": [],
-      "intents": ["integrate-unsupported-provider"]
+      "intents": [
+        "add-newsletter-signup",
+        "add-cookie-consent",
+        "route-new-leads",
+        "add-privacy-controls",
+        "integrate-unsupported-provider",
+        "add-outbound-webhook",
+        "add-inbound-webhook",
+        "connect-crm",
+        "add-workflow-automation",
+        "add-transactional-email",
+        "configure-integration-consent"
+      ]
+    },
+    {
+      "id": "transactional-notifications-and-templates",
+      "version": "1.0.0",
+      "description": "Implement event-driven customer notifications and maintainable message templates.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "configure-fulfillment",
+        "add-booking-reminders",
+        "connect-email-provider",
+        "add-workflow-automation",
+        "add-transactional-email"
+      ]
     },
     {
       "id": "runtime-config-secrets-and-provider-readiness",
@@ -70,8 +401,86 @@
       "description": "Implement Project Secrets declarations, setup states, and provider readiness without accessing values.",
       "compatibleAiRuntime": ">=1.24.0 <1.25.0",
       "entry": "SKILL.md",
-      "resources": ["references/secrets-manifest.md"],
-      "intents": ["integrate-unsupported-provider"]
+      "resources": [
+        "references/secrets-manifest.md"
+      ],
+      "intents": [
+        "connect-payment-provider",
+        "integrate-unsupported-provider",
+        "add-outbound-webhook",
+        "add-inbound-webhook",
+        "connect-crm",
+        "connect-email-provider",
+        "verify-release-readiness"
+      ]
+    },
+    {
+      "id": "d1-migrations-and-data-integrity",
+      "version": "1.0.0",
+      "description": "Implement safe D1 schema evolution, persistence invariants, and integrity checks.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "add-shopping-cart",
+        "configure-availability",
+        "add-profile-settings",
+        "add-customer-wallet",
+        "repair-data-migration",
+        "verify-data-integrity"
+      ]
+    },
+    {
+      "id": "generated-admin-sso-rbac-and-audit",
+      "version": "1.0.0",
+      "description": "Implement generated-site admin SSO, role-based access, and auditable privileged actions.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "add-marketing-dashboard",
+        "configure-fulfillment",
+        "create-advisor-portal",
+        "fix-auth-access",
+        "audit-admin-permissions"
+      ]
+    },
+    {
+      "id": "diagnosis-testing-and-verification",
+      "version": "1.0.0",
+      "description": "Diagnose root causes and verify changes with proportionate tests and observable evidence.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [],
+      "intents": [
+        "improve-accessibility",
+        "audit-missing-assets",
+        "audit-indexability",
+        "diagnose-build-failure",
+        "fix-broken-page",
+        "repair-data-migration",
+        "verify-data-integrity",
+        "fix-auth-access",
+        "audit-admin-permissions",
+        "improve-site-performance",
+        "verify-release-readiness"
+      ]
+    },
+    {
+      "id": "research-external-integrations",
+      "version": "1.0.0",
+      "description": "Research current official vendor contracts and decide whether an unbundled integration is supportable.",
+      "compatibleAiRuntime": ">=1.24.0 <1.25.0",
+      "entry": "SKILL.md",
+      "resources": [
+        "references/official-contract-record.md"
+      ],
+      "intents": [
+        "connect-payment-provider",
+        "integrate-unsupported-provider",
+        "connect-crm",
+        "connect-email-provider"
+      ]
     }
   ]
 }

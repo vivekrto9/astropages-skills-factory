@@ -8,6 +8,7 @@
     "node": ">=24.11.1 <26"
   },
   "scripts": {
+    "sync:catalog": "node scripts/sync-approved-inventory.mjs",
     "test": "node --test",
     "validate": "node scripts/factory.mjs validate",
     "build": "node scripts/factory.mjs build",

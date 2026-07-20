@@ -53,26 +53,29 @@ function exactBoundaryMatch(text, term) {
   return new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'u').test(normalizedText);
 }
 
-test('Milestone 2B publishes exactly the approved three intents and eight private skills', async () => {
+test('the evaluated three intents and eight private skills remain exact catalog slices', async () => {
   const { intents } = await readJson('source/catalog/intents.json');
   const { skills } = await readJson('source/catalog/skills.json');
 
-  assert.deepEqual(intents.map(({ key }) => key), Object.keys(EXPECTED_INTENTS));
-  assert.deepEqual(skills.map(({ id }) => id), EXPECTED_SKILLS);
+  assert.deepEqual(intents.filter(({ key }) => key in EXPECTED_INTENTS).map(({ key }) => key), Object.keys(EXPECTED_INTENTS));
+  assert.deepEqual(
+    skills.filter(({ id }) => EXPECTED_SKILLS.includes(id)).map(({ id }) => id).sort(),
+    [...EXPECTED_SKILLS].sort(),
+  );
   assert.equal(new Set(EXPECTED_SKILLS).size, 8);
 
-  for (const intent of intents) {
+  for (const intent of intents.filter(({ key }) => key in EXPECTED_INTENTS)) {
     const expected = EXPECTED_INTENTS[intent.key];
     assert.equal(intent.label, expected.label);
     assert.equal(intent.categoryKey, expected.categoryKey);
     assert.deepEqual(intent.internalSkills, expected.internalSkills);
     assert.deepEqual(intent.toolDependencies, expected.toolDependencies);
   }
-  for (const skill of skills) {
+  for (const skill of skills.filter(({ id }) => EXPECTED_SKILLS.includes(id))) {
     assert.equal(skill.version, '1.0.0');
     assert.equal(skill.compatibleAiRuntime, '>=1.24.0 <1.25.0');
     assert.equal(skill.entry, 'SKILL.md');
-    assert.equal(skill.intents.length, 1);
+    assert.ok(skill.intents.some((intent) => Object.keys(EXPECTED_INTENTS).includes(intent)));
   }
 });
 
