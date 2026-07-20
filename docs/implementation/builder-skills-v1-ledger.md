@@ -23,7 +23,7 @@ This is the durable resume point for the cross-repository Builder Skills v1 prog
 
 ## Checkpoint — 2026-07-20
 
-Status: **Milestones 0–1 complete; Milestone 2 not started**
+Status: **Milestones 0–1 complete; Milestone 2 in progress**
 
 Default-branch starting SHAs:
 
@@ -121,15 +121,37 @@ Milestone 1 final inventory completed on 2026-07-20:
 - Final inventory quality review: **APPROVED** on 2026-07-20 after closing the server-side connector responsibility gap.
 - Inventory closeout verification: `git diff --check` — exit 0.
 
-Milestone 1 is complete. No factory schema, `SKILL.md`, catalog, fixture, build tooling, or runtime implementation has been added yet.
+Milestone 1 is complete. At its closeout checkpoint, no factory schema, `SKILL.md`, catalog, fixture, build tooling, or runtime implementation had been added.
 
-Next action: begin Milestone 2 with tests for the factory source schemas, deterministic validator/builder/auditor/safety tooling, and the Website Design, Panchang, and unsupported-integration slices.
+Milestone 2A factory scaffold and deterministic tooling implemented on 2026-07-20:
+
+- Added the maintainable authored-source layout `source/foundation`, `source/catalog`, and `source/skills`, without importing the discarded capabilities-repository structure. The tracked pre-slice catalog contains the exact ordered 11 public categories and intentionally contains zero intents, skills, and template-evidence records; substantive slice content remains Milestone 2B work.
+- Added closed draft-2020-12 JSON Schemas for category, intent, internal skill, template-evidence record, and bundle manifest records under stable `https://astropages.com/schemas/builder-skills/v1/*` IDs. The maintained Ajv 2020 validator compiles every schema and applies it to every authored record and the generated manifest; validation requires all five published schemas and the exact `>=1.24.0 <1.25.0` OpenHands SDK compatibility range.
+- Added Node ESM validation for exact category keys/labels/order, globally NFKC/lowercase-normalized routing-term collisions, unique IDs, reciprocal intent/skill references, the fixed tool-dependency allowlist, confined normalized paths, duplicate output paths, and AgentSkills `SKILL.md` entry/frontmatter rules.
+- Added fail-closed source checks for missing/undeclared files, symlinks, special or executable payloads, binary/NUL content, likely secret values, branded legacy generated-site names, and unsafe browser-secret guidance.
+- Added a template-evidence audit hook that validates pinned 40-character commits and confined evidence paths and, when supplied `--templates-root`, verifies exact checkout HEADs, resolves every path from the declared Git object, rejects untracked paths, and rejects symlinks or escapes in both Git and checkout path components.
+- Added canonical JSON generation and deterministic uncompressed ustar output. `dist/bundle` contains only `AGENTS.md`, `.agents/skills`, `catalog/intents.json`, `catalog/skills.json`, and the non-circular `bundle.manifest.json`; records are UTF-8 path-sorted and contain byte size and SHA-256. Tar entries normalize mtime/uid/gid/mode. The archive SHA exists only in `dist/build-attestation.json`, outside the tar and manifest.
+- Toolchain source is locked by `.node-version` (`24.11.1`), `packageManager` (`npm@11.7.0`), and `package-lock.json`; Ajv is locked at `8.20.0`; generated artifacts, private staging/backup paths, and `node_modules` are ignored. No repository CI YAML or callback/release implementation was added.
+- TDD RED: `node --test tests/factory.test.mjs` exited 1 with 0/16 assertions passing before `scripts/factory.mjs` existed. A later focused schema-presence test also exited 1 before schema presence became a validation contract.
+- Specification-hardening RED: the focused 13-check exploit suite exited 1 with 12 expected failures and one pre-existing duplicate-resource check passing. Failures proved missing enforcement for malformed schemas, catalog/schema drift, entry/resource overlap, ill-formed UTF-8, untracked or symlink-component template evidence, and symlink-redirected output paths.
+- The earlier 30/30 green run included a caller-supplied source-commit override and arbitrary output-directory support. Quality review rejected those contracts; its local digests are superseded and are not valid provenance or release evidence.
+- Quality-hardening RED: a focused 22-check run exited 1 with 19 expected failures and three pre-existing checks passing. Failures covered source/catalog bounds, C0/C1 strings, confusing resource names, a raw malformed-record error, strict CLI parsing, clean/existing/exact Git provenance, and protection of an unrecognized `dist`.
+- Quality-hardening GREEN with pinned Node/npm: direct `node --test tests/factory.test.mjs` — exit 0, 81/81 tests; `npm run validate` — exit 0, 11 categories / 0 pre-slice intents / 0 pre-slice skills; `npm run safety` — exit 0, 5 source files; `npm run audit` — exit 0, 0 pre-slice evidence records; `npm audit` — exit 0, 0 vulnerabilities; `git diff --check` — exit 0. Tests use newly initialized, committed, clean Git fixtures and independently recompute every payload size/hash, `contentSha256`, archive SHA, and tar path/body/checksum/metadata contract.
+- All authored text and schemas use fatal UTF-8 decoding before parsing or normalization. Catalog and source limits bound list/string/file counts and bytes; bundle generation separately bounds payload count/bytes and archive size. Resource paths use unambiguous printable ASCII segments, and C0/C1 catalog content is rejected.
+- Public `build` owns only `<factory-root>/dist`, accepts only optional `--expected-commit`, resolves an existing exact `HEAD`, and requires a completely clean tracked/untracked checkout. It renders into a newly created private staging directory and replaces only a directory carrying the exact factory ownership marker. Self-consistent digests are integrity metadata, not ownership proof; pristine and digest-adjusted pre-marker artifacts are preserved and rejected. Public arbitrary output deletion and source-commit overrides do not exist. Reproducibility uses only newly created private temporary outputs.
+- Marker-regression RED: the focused three-check test exited 1 with both pristine and digest-adjusted pre-marker cases being incorrectly replaced. GREEN: the same three checks pass after removing pre-marker compatibility entirely; no migration tar parser exists in production tooling.
+- Provenance/evidence RED: the first focused evidence-path run exited 1 with newline and non-ASCII paths still accepted; the focused provenance run exited 1 with ignored declared resources and assume-unchanged byte changes still accepted. Final focused hardening RED exited 1 with 13 failures: repeated null/mixed invalid records raw-dereferenced in all four catalogs, and byte-identical external symlinks hidden with `assume-unchanged` were accepted for each root build input. GREEN: the focused 28/28 checks and full 81/81 suite pass. Exact-HEAD provenance enumerates every file under `source`, `schemas`, `lib`, and `scripts` plus `package.json`, `package-lock.json`, and `.node-version`; every path, including all three root inputs, passes the same `lstat` regular/non-symlink gate, must be a tracked HEAD blob, and must be byte-identical. Only ignored `dist`, `node_modules`, and private staging/backup directories are allowed. Template-evidence paths are schema-backed bounded printable canonical ASCII paths that retain legitimate repository punctuation. Repeated null, scalar, missing-ID, and mixed invalid shapes across categories, intents, skills, and evidence all return actionable `FactoryValidationError` diagnostics without raw runtime errors.
+- On this intentionally uncommitted review worktree, `npm run reproducibility` exits 1 with `Git checkout must be completely clean before attesting`. An earlier agent-created pre-marker `dist` also makes `npm run build` exit 1 on its stricter ownership gate; root will move that directory non-destructively outside the worktree, commit the reviewed scaffold, then rerun clean build/reproducibility and record the resulting exact HEAD and fresh digests before Milestone 2A approval.
+- Milestone 2A specification review: **APPROVED** on 2026-07-20 after adversarial re-review of schema application, archive/path handling, evidence anchoring, clean-HEAD provenance, output ownership, root-input symlinks, and malformed input behavior.
+- Milestone 2A quality review: **APPROVED** on 2026-07-20 after adversarial re-review of destructive-output prevention, exact tracked-byte provenance, bounded inputs, strict CLI behavior, structured diagnostics, schema ownership, and independent digest/tar verification.
+
+Milestone 2 remains in progress. Next action: freeze the approved Milestone 2A scaffold, run its clean-HEAD build/reproducibility gate, then implement and forward-evaluate the explicit Website Design, automatic Panchang, and unsupported-integration slices against this contract.
 
 ## Milestone index
 
 0. Grounding and documentation — **complete**
 1. Audit and baselines — **complete**
-2. Factory plus three slices
+2. Factory plus three slices — **in progress (factory scaffold/tooling implemented; three slices pending)**
 3. Control Plane
 4. Woodpecker
 5. Admin

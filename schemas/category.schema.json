@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://astropages.com/schemas/builder-skills/v1/category.schema.json",
+  "title": "Builder skill public category",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["key", "label", "description", "icon", "order"],
+  "properties": {
+    "key": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 64 },
+    "label": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^[^\\u0000-\\u001F\\u007F-\\u009F]+$" },
+    "description": { "type": "string", "minLength": 1, "maxLength": 240, "pattern": "^[^\\u0000-\\u001F\\u007F-\\u009F]+$" },
+    "icon": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 64 },
+    "order": { "type": "integer", "minimum": 1, "maximum": 11 }
+  }
+}
