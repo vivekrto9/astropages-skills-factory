@@ -172,7 +172,16 @@ Milestone 2B three-slice implementation checkpoint on 2026-07-20:
 - Public integration mechanics now reuse proportionate existing CSRF/origin, spam/abuse, rate-limit, duplicate-submit, and idempotency conventions. Consent, retention, and deletion work is conditional on the verified purpose, provider contract, applicable existing policy, and requested scope rather than an unconditional database/policy expansion.
 - Milestone 2B specification review: **APPROVED** on 2026-07-21 after exact prompt/fixture/activation, webhook-contract, MCP ownership, and exact-boundary inference corrections.
 
-Milestone 2 remains in progress. This checkpoint has not run forward agent evaluations, clean-HEAD build/reproducibility, candidate publication, approval, deployment, or any canary. Next action: commit the accepted source, run exact clean-HEAD build/reproducibility, and forward-evaluate the executable scenarios; defer the successful Panchang run until its real MCP dependency exists.
+Milestone 2 remained in progress at the content checkpoint; forward results and the clean-HEAD artifact are recorded below. Candidate publication, approval, deployment, canary, and a successful MCP-backed Panchang run had not occurred.
+
+Milestone 2B forward evaluation checkpoint on 2026-07-21:
+
+- The exact candidate at `49e69ccd5c223811e4609c440b3f51c8527d3593` built reproducibly with `contentSha256=bde7063f402edf2c709e461a010e49f86c588c457f9331138636f4375ab8139a` and `artifactSha256=20e27b1edbd8ff7361ab2f39eb07cb30a2a6cad3e00eda5f7ac6cd4c56aec3f1`.
+- Recorded all three forward outcomes in `evals/results/2026-07-21-three-slices.json` against the exact neutral-base fixture commit. Homepage completed with a smaller two-file diff and full verification. HubSpot completed as a real server-only integration using official documentation, same-worktree custom secret manifest, structured readiness, and full verification without a live-provider claim. Panchang correctly made zero changes and returned an actionable block because the real AstrologyAPI MCP dependency is not attached yet.
+- The HubSpot run exposed a real platform gap: current Project Secrets manifest validation does not yet accept optional `documentationUrl`; later integration work must add that forward-compatible schema/UI support before the optional field is emitted.
+- The successful Panchang forward evaluation remains a Milestone 8 gate. Its current blocked result is expected safety behavior, not feature completion.
+
+Milestone 2 remains in progress. Next action: implement the Control Plane, AI, and Client vertical path required to run these skills through a real pinned conversation; do not spend more time expanding factory content before that path works.
 
 ## Milestone index
 
