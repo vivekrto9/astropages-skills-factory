@@ -23,7 +23,7 @@ This is the durable resume point for the cross-repository Builder Skills v1 prog
 
 ## Checkpoint — 2026-07-20
 
-Status: **Milestone 0 complete; Milestone 1 in progress**
+Status: **Milestones 0–1 complete; Milestone 2 not started**
 
 Default-branch starting SHAs:
 
@@ -110,14 +110,25 @@ Milestone 1 current Builder Skills and Project Secrets flow audit completed on 2
 - Current-flow audit quality review: **APPROVED** on 2026-07-20.
 - Current-flow audit closeout verification: `git diff --check` — exit 0.
 
-Milestone 1 is not complete: only the final granular-intent/internal-skill inventory remains outstanding. Source-level parity questions that affect that inventory must be resolved there rather than inferred from legacy capability labels.
+Milestone 1 final inventory completed on 2026-07-20:
 
-Next action: finish the Milestone 1 granular-intent/internal-skill inventory without converting research family labels or legacy capability declarations into factory architecture.
+- Added the review proposal in `docs/research/skill-inventory-v1.md` and deterministic machine-readable inventory in `docs/research/skill-inventory-v1.json`.
+- Proposed the exact ordered 11 public categories, 90 granular public intents, and 29 private cohesive internal skills without turning template-family labels or legacy capability declarations into architecture.
+- Recorded evidence families and uncertainty per intent, global normalized alias constraints, tool dependencies, internal-skill boundaries, and explicit Milestone 2 mappings for Website Design, Panchang, and unsupported integration.
+- Inventory validation confirmed JSON parsing, proposal status, exact category order, unique category/intent/internal-skill keys, normalized collision-free aliases, valid category/internal-skill/evidence/tool references, 90 intents, use of every category and internal skill, exact 29-name agreement, and required mappings for provider-dependent astrology and unsupported integration — exit 0.
+- The unsupported-provider slice composes three distinct responsibilities: official-contract research and unsupported-state decisions, server-side connector mechanics, and Project Secrets/readiness behavior. It does not treat researched setup scaffolding as a completed integration.
+- Final inventory specification review: **APPROVED** on 2026-07-20.
+- Final inventory quality review: **APPROVED** on 2026-07-20 after closing the server-side connector responsibility gap.
+- Inventory closeout verification: `git diff --check` — exit 0.
+
+Milestone 1 is complete. No factory schema, `SKILL.md`, catalog, fixture, build tooling, or runtime implementation has been added yet.
+
+Next action: begin Milestone 2 with tests for the factory source schemas, deterministic validator/builder/auditor/safety tooling, and the Website Design, Panchang, and unsupported-integration slices.
 
 ## Milestone index
 
 0. Grounding and documentation — **complete**
-1. Audit and baselines — **in progress** (template audit, three no-skill baselines, and current-flow audit complete; only the final inventory remains)
+1. Audit and baselines — **complete**
 2. Factory plus three slices
 3. Control Plane
 4. Woodpecker
