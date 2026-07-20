@@ -21,6 +21,36 @@ This is the durable resume point for the cross-repository Builder Skills v1 prog
 - Discarded `astropages-capabilities` is research only and never a source, dependency, or fallback.
 - Task 11 alone is excluded. Production mutation during evaluation requires explicit authorization; authorized live canary/cutover/removal are Milestone 10 gates.
 
+## Checkpoint — 2026-07-21 (end-to-end implementation complete; deployment gates remain)
+
+Implemented feature-branch heads:
+
+| Repository | Head | Delivered |
+|---|---:|---|
+| Skills Factory | `32f420a` | 11 categories, 90 public intents, 29 private skills, deterministic bundle and full catalog verification ledger |
+| Control Plane | `4114f59` | immutable verified builds/releases/events/pointers, session pins, public routing API, trusted AI context, private R2 artifacts, Woodpecker pipelines, exact-commit Project Secrets readiness |
+| Client | `8a825de` | adaptive grouped `@` picker, explicit/inferred indicators, safe Setup card, official documentation link, legacy coexistence |
+| Admin | `f3a09ad` | evidence inspection, DB-owned version acceptance, canary/stable promotion, rollback, retirement and append-only history |
+| AI service | `79fbe7c` | strict pinned loader, SDK 1.24 activation, immutable continuation, read-only Docker mount, governed conversation-scoped AstrologyAPI MCP discovery proxy |
+
+Fresh verification evidence:
+
+- Factory: 94/94 tests; validate 11/90/29; audit, safety, dependency audit, reproducibility and build passed. Final content SHA `c0810a7c57b86d1df5ca7345db86d9b834b53c06391011ac406b94057c0be115`; artifact SHA `2eff207d1694f6e40201e8041d833a96969a11c7be7b873e01b4bed25f804c2c`.
+- Control Plane: 146 suites / 1,145 tests passed on the final combined branch; build and `git diff --check` passed; full Woodpecker infrastructure verification passed. One immediately prior full run hit the pre-existing order-sensitive catalog-route authorization test; the focused suite passed 18/18 and the clean full rerun passed 1,145/1,145.
+- Client: 66 files / 396 tests and production build passed; final Setup-card adjustment focused test 20/20 and typecheck passed; lint has only six unchanged baseline warnings.
+- Admin: 27 files / 126 tests and production build passed; final release-operation focused tests, typecheck and zero-warning lint passed.
+- AI service: 294 tests, Ruff and `git diff --check` passed.
+
+The authored and runtime implementation is complete on feature branches. It is not yet a production release. Remaining gates require external/runtime authority and must occur in this order:
+
+1. Push/review the five feature branches and obtain green repository CI.
+2. Deploy migration `040_builder_skills_v2.sql`, Control Plane, AI service, Client and Admin with `BUILDER_SKILLS_V2_ENABLED=false`.
+3. Provision the private Skills R2 bucket; install only the documented callback/internal tokens and server-only AstrologyAPI MCP configuration; activate the exact Factory repository in Woodpecker with its two push-only release secrets.
+4. Merge Factory only after the deployed callback/storage path is healthy; let `skills_release` register the verified candidate; use Admin to assign its DB-owned version and promote canary.
+5. Run authorized live design, Panchang/MCP, unsupported-integration, pinning and rollback canaries. Only after evidence is recorded may stable be enabled and a later forward migration remove the legacy worker/tables.
+
+No live release, production mutation, stable pointer move, canary claim, or legacy removal is recorded at this checkpoint.
+
 ## Checkpoint — 2026-07-20
 
 Status: **Milestones 0–1 complete; Milestone 2 in progress**
