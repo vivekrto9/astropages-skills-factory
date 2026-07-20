@@ -1,0 +1,268 @@
+{
+  "schemaVersion": 2,
+  "date": "2026-07-20",
+  "capturedAt": "2026-07-20T13:57:12Z",
+  "outputContentDigestAlgorithm": "For every modified or untracked file, compute the SHA-256 of its content, format a newline-terminated `sha256  path` line, sort the lines lexicographically by path, then compute SHA-256 over the resulting lines.",
+  "promptEvidenceBoundary": "Prompt text is recorded from the dispatcher and is not independently reconstructable from the dirty worktrees.",
+  "scenarios": [
+    {
+      "id": "website-design-premium-homepage",
+      "runId": "website-design-premium-homepage-20260720-01",
+      "agentTaskPath": "/root/baseline_design_eval",
+      "capturedAt": "2026-07-20T13:57:12Z",
+      "prompt": "Make the homepage feel premium without changing any of our current written content. Keep the existing brand direction, improve hierarchy and polish, and make sure it works beautifully on mobile and with keyboard navigation.",
+      "promptProvenance": "dispatcher-record",
+      "initialSha": "7e36d4b875c53c9690fa17be699bf17dea9fa8a8",
+      "builderSkillsV1Supplied": false,
+      "processSkillProvenance": {
+        "status": "not-included-in-baseline-artifact",
+        "note": "Generic process skills and tools were available and recorded in the agent session, but are not embedded in this factory artifact."
+      },
+      "outputContentDigest": "00002eefa94f8610fd4cf584a676d9e4ed9a1346bfb342e95d0a2c308af129eb",
+      "status": "completed-with-findings",
+      "changedFiles": [
+        "src/pages/index.astro",
+        "src/styles/base.css",
+        "tests/homepage-design.test.mjs"
+      ],
+      "diffStat": {
+        "trackedFiles": 2,
+        "trackedInsertions": 405,
+        "trackedDeletions": 68,
+        "untrackedFiles": 1,
+        "untrackedInsertions": 41,
+        "totalFiles": 3,
+        "totalInsertions": 446,
+        "totalDeletions": 68,
+        "trackedGitDiff": "2 files changed, 405 insertions(+), 68 deletions(-)",
+        "includingUntracked": "3 files changed, 446 insertions(+), 68 deletions(-)",
+        "note": "The untracked test contributes 41 lines and is omitted by plain git diff --stat."
+      },
+      "verification": {
+        "evidenceSource": "agent-report",
+        "agentSummary": "pnpm run verify passed: 93/93 tests plus project-assets, safety, D1 schema, Cloudflare contract, typecheck, and build checks; git diff --check passed.",
+        "manualSummary": "Browser review covered 1440x1000 and 390x844 viewports and keyboard access to the skip link.",
+        "evidenceBoundary": "Final agent verification summary; the full verify command was not rerun while writing this record.",
+        "checks": [
+          { "id": "website-design-premium-homepage-verify", "status": "passed", "evidenceSource": "agent-report", "evidence": "pnpm run verify; 93/93 tests and reported project checks passed." },
+          { "id": "website-design-premium-homepage-diff-check", "status": "passed", "evidenceSource": "agent-report", "evidence": "git diff --check" },
+          { "id": "website-design-premium-homepage-browser-desktop", "status": "passed", "evidenceSource": "agent-session", "evidence": "1440x1000 browser review; browser output remains in the agent session and is not embedded in this baseline artifact." },
+          { "id": "website-design-premium-homepage-browser-mobile", "status": "passed", "evidenceSource": "agent-session", "evidence": "390x844 browser review; browser output remains in the agent session and is not embedded in this baseline artifact." },
+          { "id": "website-design-premium-homepage-browser-keyboard", "status": "passed", "evidenceSource": "agent-session", "evidence": "Keyboard access to the skip link; browser output remains in the agent session and is not embedded in this baseline artifact." }
+        ]
+      },
+      "rubricFindings": [
+        { "id": "design-content-cms-preserved", "category": "content-and-cms-preservation", "outcome": "strength" },
+        { "id": "design-accessibility-responsive", "category": "accessibility-and-responsive-quality", "outcome": "strength" },
+        { "id": "design-focused-regression-tests", "category": "verification-coverage", "outcome": "strength" },
+        { "id": "design-large-change-surface", "category": "scope-discipline", "outcome": "failure" },
+        { "id": "design-unrequested-decoration", "category": "scope-discipline", "outcome": "failure" }
+      ],
+      "observedStrengths": [
+        "Completed the requested visual redesign at desktop and mobile sizes.",
+        "Preserved the existing written content and CMS builderEdit/chromeEdit bindings.",
+        "Added explicit keyboard and accessibility affordances, including a skip link, focus-visible styling, aria-current, and reduced-motion handling.",
+        "Added focused regression tests for CMS bindings and accessibility affordances."
+      ],
+      "observedFailures": [
+        "Changed 405 tracked lines in and deleted 68 tracked lines from the page and shared stylesheet, plus added a 41-line test; scope discipline is therefore a measurable baseline dimension.",
+        "Added decorative orbit, star, index, and brand-dot UI beyond the requested hierarchy and polish, increasing implementation surface without user confirmation."
+      ],
+      "futureSkillRequirements": [
+        "Preserve written content, CMS edit bindings, routes, and brand inputs as explicit invariants.",
+        "Prefer the smallest page and style diff that satisfies hierarchy, responsive, keyboard, and reduced-motion requirements.",
+        "Treat new decorative concepts as optional and avoid adding them unless the prompt or existing design system supports them.",
+        "Require focused tests plus desktop, mobile, and keyboard verification."
+      ]
+    },
+    {
+      "id": "astrology-daily-panchang",
+      "runId": "astrology-daily-panchang-20260720-01",
+      "agentTaskPath": "/root/baseline_panchang_eval",
+      "capturedAt": "2026-07-20T13:57:12Z",
+      "prompt": "Add a Daily Panchang feature to my website. Visitors should be able to choose their date and location and see accurate Vedic Panchang information, including the main day details and useful auspicious/inauspicious timings, in a polished mobile-friendly page.",
+      "promptProvenance": "dispatcher-record",
+      "initialSha": "7e36d4b875c53c9690fa17be699bf17dea9fa8a8",
+      "builderSkillsV1Supplied": false,
+      "processSkillProvenance": {
+        "status": "not-included-in-baseline-artifact",
+        "note": "Generic process skills and tools were available and recorded in the agent session, but are not embedded in this factory artifact."
+      },
+      "outputContentDigest": "f1212e51bc4b0e1df3b53a2f3895ac9f3a86278c60ad158df7012c02db047b6b",
+      "status": "completed-with-findings",
+      "changedFiles": [
+        ".dev.vars.example",
+        ".env.example",
+        "docs/daily-panchang.md",
+        "src/pages/api/panchang.ts",
+        "src/pages/index.astro",
+        "src/pages/panchang.astro",
+        "src/server/capabilities/vendor/astropages-capabilities/panchang-service.ts",
+        "src/styles/panchang.css",
+        "src/types/tz-lookup.d.ts",
+        "tests/panchang/panchang-api.test.mjs",
+        "tests/panchang/panchang-page.test.mjs",
+        "tests/panchang/panchang-service.test.mjs"
+      ],
+      "diffStat": {
+        "trackedFiles": 3,
+        "trackedInsertions": 9,
+        "trackedDeletions": 0,
+        "untrackedFiles": 9,
+        "untrackedInsertions": 874,
+        "totalFiles": 12,
+        "totalInsertions": 883,
+        "totalDeletions": 0,
+        "trackedGitDiff": "3 files changed, 9 insertions(+)",
+        "includingUntracked": "12 files changed, 883 insertions(+)",
+        "note": "Nine untracked files contribute 874 lines and are omitted by plain git diff --stat."
+      },
+      "verification": {
+        "evidenceSource": "agent-report",
+        "agentSummary": "pnpm run verify && git diff --check passed: 101/101 tests plus project-assets, safety, D1 schema, Cloudflare contract, typecheck, and build checks.",
+        "liveProviderAccuracy": "Not performed.",
+        "evidenceBoundary": "Final agent verification summary; the full verify command was not rerun while writing this record.",
+        "checks": [
+          { "id": "astrology-daily-panchang-verify", "status": "passed", "evidenceSource": "agent-report", "evidence": "pnpm run verify; 101/101 tests and reported project checks passed." },
+          { "id": "astrology-daily-panchang-diff-check", "status": "passed", "evidenceSource": "agent-report", "evidence": "git diff --check" },
+          { "id": "astrology-daily-panchang-live-accuracy", "status": "not-run", "evidenceSource": "agent-report", "evidence": "No live provider call or independent Panchang comparison was performed." }
+        ]
+      },
+      "researchProvenance": {
+        "status": "agent-reported",
+        "evidenceSource": "agent-session",
+        "retrievalEvidenceIncludedInBaselineArtifact": false,
+        "note": "Source contents and research outputs remain in the agent session but are not embedded in this factory baseline artifact.",
+        "reportedSources": [
+          "https://astrologyapi.com/docs/api-ref/20/advanced_panchang/sunrise",
+          "https://astrologyapi.com/docs/api-ref"
+        ]
+      },
+      "rubricFindings": [
+        { "id": "panchang-polished-responsive-feature", "category": "task-completion", "outcome": "strength" },
+        { "id": "panchang-server-side-blocked-state", "category": "secret-safety", "outcome": "strength" },
+        { "id": "panchang-invented-secret-contract", "category": "project-secrets-contract", "outcome": "failure" },
+        { "id": "panchang-legacy-capabilities-path", "category": "architecture-boundary", "outcome": "failure" },
+        { "id": "panchang-missing-secrets-manifest", "category": "project-secrets-contract", "outcome": "failure" },
+        { "id": "panchang-unverified-lahiri-claim", "category": "domain-accuracy", "outcome": "failure" },
+        { "id": "panchang-no-live-accuracy-check", "category": "live-provider-verification", "outcome": "failure" }
+      ],
+      "observedStrengths": [
+        "Built a polished responsive Panchang page with date, location, five-limb, calendar, and auspicious/inauspicious timing states.",
+        "Kept provider authentication server-side, blocked the live call when credentials were absent, and avoided displaying fabricated fallback Panchang values.",
+        "The agent reported using AstrologyAPI documentation for the legacy HTTP API's HTTPS advanced_panchang/sunrise endpoint; the output added validation, timezone, API, page, and mapping tests. Exact browser/research provenance remains in the agent session but was not embedded in this baseline artifact."
+      ],
+      "observedFailures": [
+        "Invented two project environment secrets, ASTROLOGY_API_USER_ID and ASTROLOGY_API_KEY, instead of using the architecture-defined X_ASTROLOGYAPI_KEY Project Secret contract.",
+        "Placed provider code under the deprecated src/server/capabilities/vendor/astropages-capabilities path even though astropages-capabilities is research-only and must never become a source, dependency, or fallback.",
+        "Documented environment-file and direct Worker-secret setup instead of adding astropages/secrets.manifest.json and routing setup through Project Secrets.",
+        "Claimed Lahiri sidereal calculations in documentation and response copy without verification that the selected provider endpoint guarantees that setting.",
+        "Used fixture-based provider mapping only; no live provider call or independent Panchang accuracy comparison was performed."
+      ],
+      "futureSkillRequirements": [
+        "Research the current official provider documentation, using builder-time AstrologyAPI MCP when applicable, before selecting a supported contract; distinguish a legacy HTTP API from the Builder Skills MCP dependency.",
+        "Generate runtime integrations server-side with the existing X_ASTROLOGYAPI_KEY Project Secret only.",
+        "Generated code and astropages/secrets.manifest.json must land and be synchronized in the same exact generated-repository commit; synchronization ownership remains pending the current-flow audit.",
+        "Expose a safe missing-secret preview and Project Secrets Setup card.",
+        "Use neutral integration paths and never introduce astropages-capabilities paths; route-manifest ownership remains pending the current-flow audit.",
+        "Do not assert Lahiri or other calculation modes unless the official contract or verified response proves them.",
+        "Require a controlled live-provider accuracy check against documented inputs before claiming accurate Panchang output."
+      ]
+    },
+    {
+      "id": "integration-hubspot-contact",
+      "runId": "integration-hubspot-contact-20260720-01",
+      "agentTaskPath": "/root/baseline_hubspot_eval",
+      "capturedAt": "2026-07-20T13:57:12Z",
+      "prompt": "Add a HubSpot CRM integration to my site. I want a polished contact form, and every successful inquiry should create or update the person in HubSpot and record the inquiry so my team can follow up.",
+      "promptProvenance": "dispatcher-record",
+      "initialSha": "7e36d4b875c53c9690fa17be699bf17dea9fa8a8",
+      "builderSkillsV1Supplied": false,
+      "processSkillProvenance": {
+        "status": "not-included-in-baseline-artifact",
+        "note": "Generic process skills and tools were available and recorded in the agent session, but are not embedded in this factory artifact."
+      },
+      "outputContentDigest": "70e9efe594cb81bcc795a5ee65b4454f526791041cc336c2e301736371059326",
+      "status": "completed-with-findings",
+      "changedFiles": [
+        ".dev.vars.example",
+        ".env.example",
+        "README.md",
+        "scripts/cloudflare-runtime-contract.mjs",
+        "scripts/scan-safety.mjs",
+        "src/data/public-copy.ts",
+        "src/pages/api/contact.ts",
+        "src/pages/index.astro",
+        "src/server/integrations/hubspot.ts",
+        "src/styles/base.css",
+        "template.manifest.json",
+        "tests/hubspot-integration.test.mjs"
+      ],
+      "diffStat": {
+        "trackedFiles": 9,
+        "trackedInsertions": 390,
+        "trackedDeletions": 0,
+        "untrackedFiles": 3,
+        "untrackedInsertions": 455,
+        "totalFiles": 12,
+        "totalInsertions": 845,
+        "totalDeletions": 0,
+        "trackedGitDiff": "9 files changed, 390 insertions(+)",
+        "includingUntracked": "12 files changed, 845 insertions(+)",
+        "note": "Three untracked files contribute 455 lines and are omitted by plain git diff --stat."
+      },
+      "verification": {
+        "evidenceSource": "agent-report",
+        "agentSummary": "pnpm run verify passed: 99/99 tests plus project-assets, safety, D1 schema, Cloudflare contract, typecheck, and build checks; git diff --check passed.",
+        "officialDocumentation": "The agent reported using official HubSpot documentation for the contacts upsert, notes, and association contracts.",
+        "liveProvider": "Not performed.",
+        "evidenceBoundary": "Final agent verification summary; the full verify command was not rerun while writing this record.",
+        "checks": [
+          { "id": "integration-hubspot-contact-verify", "status": "passed", "evidenceSource": "agent-report", "evidence": "pnpm run verify; 99/99 tests and reported project checks passed." },
+          { "id": "integration-hubspot-contact-diff-check", "status": "passed", "evidenceSource": "agent-report", "evidence": "git diff --check" },
+          { "id": "integration-hubspot-contact-live-provider", "status": "not-run", "evidenceSource": "agent-report", "evidence": "No live HubSpot account test was performed." }
+        ]
+      },
+      "researchProvenance": {
+        "status": "agent-reported",
+        "evidenceSource": "agent-session",
+        "retrievalEvidenceIncludedInBaselineArtifact": false,
+        "note": "Source contents and research outputs remain in the agent session but are not embedded in this factory baseline artifact.",
+        "reportedSources": [
+          "https://developers.hubspot.com/docs/api-reference/latest/crm/objects/contacts/guide",
+          "https://developers.hubspot.com/docs/api-reference/latest/crm/activities/notes/guide"
+        ]
+      },
+      "rubricFindings": [
+        { "id": "hubspot-server-only-provider-calls", "category": "secret-safety", "outcome": "strength" },
+        { "id": "hubspot-validation-and-tests", "category": "verification-coverage", "outcome": "strength" },
+        { "id": "hubspot-specific-blocked-message", "category": "missing-secret-behavior", "outcome": "strength" },
+        { "id": "hubspot-global-secret-contract-change", "category": "project-secrets-contract", "outcome": "failure" },
+        { "id": "hubspot-legacy-capability-key", "category": "architecture-boundary", "outcome": "failure" },
+        { "id": "hubspot-missing-manifest-and-setup", "category": "project-secrets-contract", "outcome": "failure" },
+        { "id": "hubspot-no-live-provider-test", "category": "live-provider-verification", "outcome": "failure" }
+      ],
+      "observedStrengths": [
+        "The agent reported using official HubSpot documentation; the inspected output implemented provider calls in a server-only integration module and API route. Exact browser/research provenance remains in the agent session but was not embedded in this baseline artifact.",
+        "Kept the bearer token out of browser code and API responses, validated and bounded input, returned a safe missing-secret state, and added a honeypot.",
+        "Added focused tests for validation, contacts upsert, note association, provider failure, secret absence, form accessibility, and manifest registration.",
+        "The missing-secret API response gives the specific message Contact form delivery is not configured yet."
+      ],
+      "observedFailures": [
+        "Changed the base template's global Cloudflare secret contract and safety scanner, and used environment examples and README as the setup path for one generated-site integration.",
+        "Added a legacy capabilityKey to template.manifest.json; that field is deprecated evidence, while ownership of the current route-manifest flow remains pending audit.",
+        "Created no astropages/secrets.manifest.json and no initial safe missing-secret preview with a direct Project Secrets Setup card, even though the API itself returns the specific configuration message.",
+        "Provider behavior was tested with mocked responses only; no live HubSpot account test verified scopes, upsert behavior, note creation, or association IDs."
+      ],
+      "futureSkillRequirements": [
+        "Mandatory: research current official vendor documentation and record the exact API version, permissions, endpoints, and association contract used.",
+        "Keep provider calls and credential resolution server-side without altering a global deployment secret contract for a project-local integration.",
+        "Declare required keys in astropages/secrets.manifest.json; an official HTTPS documentationUrl is optional.",
+        "Generated code and astropages/secrets.manifest.json must land and be synchronized in the same exact generated-repository commit; synchronization ownership remains pending the current-flow audit.",
+        "Render a safe missing-secret preview and a direct Project Secrets Setup card; never substitute README or environment examples for that flow.",
+        "Avoid deprecated capabilityKey architecture; route-manifest ownership remains pending the current-flow audit.",
+        "Require a controlled live-provider test before claiming operational HubSpot delivery."
+      ]
+    }
+  ]
+}

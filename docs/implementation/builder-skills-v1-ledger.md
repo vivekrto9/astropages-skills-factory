@@ -85,14 +85,28 @@ Milestone 1 audit part 1 completed on 2026-07-20:
 - Part 1 quality review: **APPROVED** on 2026-07-20.
 - Part 1 closeout verification: `git diff --check` — exit 0.
 
-Milestone 1 is not complete: native repository/service baselines, dependency/integration/secrets-flow baselines, source-level parity review, and the final granular-intent/internal-skill inventory remain outstanding.
+Milestone 1 no-skill builder baselines completed on 2026-07-20:
 
-Next action: complete Milestone 1 baselines and inventory without converting research family labels or legacy capability declarations into factory architecture.
+- Captured three scenarios at `2026-07-20T13:57:12Z` from full base-template SHA `7e36d4b875c53c9690fa17be699bf17dea9fa8a8` without a Builder Skills v1 bundle or content. Generic process skills and tools were available and recorded in the original agent sessions, but are not embedded in this factory artifact.
+- Recorded stable run IDs, dispatcher-provided prompts, output content digests, numeric diff metrics, agent-reported verification checks, stable rubric findings, strengths, failures, and future skill requirements in `evals/baselines/scenarios.json` and `evals/baselines/2026-07-20.md`; prompt fidelity is not independently reconstructable from the dirty worktrees.
+- The Website Design output preserved copy, CMS bindings, responsive behavior, and accessibility, but its tracked page/CSS diff was 405 insertions and 68 deletions and it added decorative UI; scope discipline remains measurable. The 93/93 verification result is agent-reported. Browser evidence remains in `/root/baseline_design_eval` and is not embedded in this baseline artifact.
+- For Panchang, the agent reported using AstrologyAPI documentation, including the advanced Panchang and API-reference URLs recorded in the baseline. Source contents and research output remain in `/root/baseline_panchang_eval` and are not embedded in this artifact. The output invented `ASTROLOGY_API_USER_ID` and `ASTROLOGY_API_KEY`, used a legacy capabilities vendor path and environment documentation, omitted `astropages/secrets.manifest.json`, made an unverified Lahiri claim, and had no live accuracy check. The 101/101 verification result is agent-reported. Route-manifest ownership remains pending the current-flow audit.
+- For HubSpot, the agent reported using the official contacts and notes guide URLs recorded in the baseline. Source contents and research output remain in `/root/baseline_hubspot_eval` and are not embedded in this artifact. The output used server-only handling, focused tests, and a specific missing-configuration API message, but changed the global Cloudflare secret contract and safety scanner, used environment examples and README for setup, added a deprecated manifest `capabilityKey`, omitted `astropages/secrets.manifest.json` and an initial Project Secrets Setup state, and had no live provider test. The 99/99 verification result is agent-reported. Its polished public copy, home-page, and CSS work is not scored as a failure.
+- Future integration requirements make official-document research mandatory and `documentationUrl` optional; generated code and `astropages/secrets.manifest.json` must land and be synchronized in the same exact generated-repository commit, with synchronization ownership to be recorded by the current-flow audit.
+- All three disposable evaluation worktrees remain dirty and uncommitted for review and must be removed later. No baseline patch or skill content was copied into the factory.
+- Baseline-record specification review: **APPROVED** on 2026-07-20.
+- Baseline-record quality review: **APPROVED** on 2026-07-20.
+- Baseline-record validation confirmed JSON parsing and required schema shape, stable run/task provenance, numeric diff metrics, stable rubric findings, and all three output content digests against the current modified-plus-untracked file sets — exit 0.
+- Baseline-record closeout verification: `git diff --check` — exit 0.
+
+Milestone 1 is not complete: the final granular-intent/internal-skill inventory and the current integration/Project Secrets flow audit remain outstanding. Source-level parity questions that affect that inventory must be resolved there rather than inferred from legacy capability labels.
+
+Next action: finish the Milestone 1 intent/internal-skill inventory and current integration/Project Secrets flow audit without converting research family labels or legacy capability declarations into factory architecture.
 
 ## Milestone index
 
 0. Grounding and documentation — **complete**
-1. Audit and baselines — **in progress** (audit part 1 complete; baselines and inventory remain)
+1. Audit and baselines — **in progress** (template audit and three no-skill baselines complete; final inventory and current integration/Project Secrets flow audit remain)
 2. Factory plus three slices
 3. Control Plane
 4. Woodpecker
