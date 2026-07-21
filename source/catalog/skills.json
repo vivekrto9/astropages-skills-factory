@@ -12,6 +12,7 @@
         "refresh-homepage",
         "create-landing-page",
         "add-site-search",
+        "add-daily-panchang",
         "diagnose-build-failure",
         "fix-broken-page"
       ]

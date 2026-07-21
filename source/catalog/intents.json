@@ -1241,6 +1241,7 @@
         "Add a Daily Panchang for the visitor's location."
       ],
       "internalSkills": [
+        "generated-site-discovery-and-routing",
         "astrology-provider-adapters",
         "horoscope-panchang-numerology-and-tarot"
       ],

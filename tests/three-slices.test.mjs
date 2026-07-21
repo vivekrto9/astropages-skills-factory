@@ -23,6 +23,7 @@ const EXPECTED_INTENTS = {
     label: 'Add daily Panchang',
     categoryKey: 'astrology-experiences',
     internalSkills: [
+      'generated-site-discovery-and-routing',
       'astrology-provider-adapters',
       'horoscope-panchang-numerology-and-tarot',
     ],
@@ -60,7 +61,7 @@ test('the evaluated three intents and eight private skills remain exact catalog 
   assert.deepEqual(intents.filter(({ key }) => key in EXPECTED_INTENTS).map(({ key }) => key), Object.keys(EXPECTED_INTENTS));
   assert.deepEqual(
     skills.filter(({ id }) => EXPECTED_SKILLS.includes(id)).map(({ id }) => id).sort(),
-    [...EXPECTED_SKILLS].sort(),
+    [...new Set(EXPECTED_SKILLS)].sort(),
   );
   assert.equal(new Set(EXPECTED_SKILLS).size, 8);
 
@@ -107,11 +108,14 @@ test('homepage refresh instructions preserve the target source of truth and boun
 
 test('Panchang instructions use AstrologyAPI MCP only for builder-time discovery and safe runtime integration', async () => {
   const foundation = await readText('source/foundation/AGENTS.md');
+  const discovery = await skillText('generated-site-discovery-and-routing');
   const adapter = await skillText('astrology-provider-adapters');
   const experience = await skillText('horoscope-panchang-numerology-and-tarot');
   const all = `${adapter}\n${experience}`;
 
   assert.match(foundation, /catalog-managed.*reserved.*must not.*astropages\/secrets\.manifest\.json/is);
+  assert.match(discovery, /existing.*route.*component.*server handler.*reuse/is);
+  assert.match(discovery, /do not create.*parallel.*content.*collection/is);
   assert.match(adapter, /sole owner.*AstrologyAPI MCP/is);
   assert.match(adapter, /builder-time.*official.*capabilit.*schema.*discover/is);
   assert.match(adapter, /not.*generated-site runtime.*calculation tool/is);
