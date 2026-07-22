@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { execFile } from 'node:child_process';
 import { createHash } from 'node:crypto';
-import { chmod, cp, mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises';
+import { chmod, cp, mkdir, mkdtemp, readFile, rm, stat, symlink, writeFile } from 'node:fs/promises';
 import os from 'node:os';
 import path from 'node:path';
 import { promisify } from 'node:util';
@@ -653,6 +653,12 @@ test('build emits the exact contract with valid hashes and no attestation inside
   assert.match(attestation.artifactSha256, /^[a-f0-9]{64}$/);
   assert.equal(attestation.contentSha256, manifest.contentSha256);
   const tar = await readFile(path.join(root, 'dist/skills-bundle.tar'));
+  const distStat = await stat(path.join(root, 'dist'));
+  assert.equal(
+    distStat.mode & 0o777,
+    0o755,
+    'dist must be traversable by the non-root candidate publisher in the next CI step',
+  );
   assert.equal(attestation.artifactSha256, hash(tar));
   assert.equal(tar.includes(Buffer.from('build-attestation.json')), false);
   assert.equal(tar.includes(Buffer.from('artifactSha256')), false);
