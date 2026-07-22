@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.skills-dist-staging-*/
+.skills-dist-previous-*/

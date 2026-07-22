@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "1",
+  "templates": [
+    {
+      "templateKey": "neutral-base",
+      "repository": "base-template",
+      "commit": "7e36d4b875c53c9690fa17be699bf17dea9fa8a8",
+      "paths": ["src/pages/index.astro", "src/styles/base.css"]
+    },
+    {
+      "templateKey": "astra-guru-meridian",
+      "repository": "apt-astra-guru-meridian",
+      "commit": "174a01847df4486a6d7eded1a8db963b3d7ebe28",
+      "paths": ["src/pages/api/panchang/index.ts", "src/pages/free-tools/daily-panchang.astro"]
+    },
+    {
+      "templateKey": "pandit-style-hub",
+      "repository": "aspt-pandit-style-multiservice-hub",
+      "commit": "cd727e3415351690af19affac3703ccfd87c5d14",
+      "paths": ["src/layouts/AstraGuruLayout.astro"]
+    }
+  ]
+}

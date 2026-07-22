@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "candidateSourceCommit": "49e69ccd5c223811e4609c440b3f51c8527d3593",
+  "candidateContentSha256": "bde7063f402edf2c709e461a010e49f86c588c457f9331138636f4375ab8139a",
+  "candidateArtifactSha256": "20e27b1edbd8ff7361ab2f39eb07cb30a2a6cad3e00eda5f7ac6cd4c56aec3f1",
+  "fixture": {
+    "repository": "base-template",
+    "commit": "7e36d4b875c53c9690fa17be699bf17dea9fa8a8"
+  },
+  "runs": [
+    {
+      "scenarioId": "refresh-homepage-forward",
+      "agentTaskPath": "/root/forward_design_eval",
+      "status": "completed",
+      "changedFiles": 2,
+      "insertions": 156,
+      "deletions": 37,
+      "outputContentDigest": "3facf31b8ed9900ba56e42275210e9a4ad47781fa7f4717f3b74013849a90e24",
+      "verification": "pnpm run verify passed with 91/91 tests, safety, D1 schema, Cloudflare contract, typecheck, build, runtime route smoke, and git diff check",
+      "findings": [
+        "Preserved written content and EmDash bindings with a two-file change.",
+        "Added responsive, focus-visible, reduced-motion, and current-navigation behavior.",
+        "No physical-device or assistive-technology run was performed."
+      ]
+    },
+    {
+      "scenarioId": "add-daily-panchang-forward",
+      "agentTaskPath": "/root/forward_panchang_eval",
+      "status": "actionable-blocked",
+      "changedFiles": 0,
+      "insertions": 0,
+      "deletions": 0,
+      "outputContentDigest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verification": "No AstrologyAPI MCP tool was attached; git status, diff stat, and diff check were empty",
+      "findings": [
+        "Did not browse substitute documentation, invent provider contracts, or generate provider code.",
+        "Did not redeclare the catalog-managed X_ASTROLOGYAPI_KEY.",
+        "Successful implementation must be rerun after the Milestone 8 conversation-scoped MCP proxy exists."
+      ]
+    },
+    {
+      "scenarioId": "integrate-unsupported-provider-forward",
+      "agentTaskPath": "/root/forward_hubspot_eval",
+      "status": "completed-without-live-provider",
+      "changedFiles": 8,
+      "insertions": 719,
+      "deletions": 0,
+      "outputContentDigest": "413afae5b6bc5747bdb992b0442fc9896ec0cc72b66e6b2e115becf020582cb5",
+      "verification": "Focused 6/6 and full pnpm run verify passed with 97/97 tests, safety, D1 schema, Cloudflare contract, typecheck, build, and git diff check",
+      "findings": [
+        "Used current official HubSpot documentation and implemented server-only contact upsert plus associated inquiry note.",
+        "Added a safe readiness API, accessible contact UI, custom Project Secrets manifest, abuse controls, bounds, and sanitized failures.",
+        "No live HubSpot claim was made because no credential was supplied.",
+        "Current Control Plane manifest schema does not yet accept documentationUrl; the generated manifest correctly omitted it and recorded official URLs in the contract note."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1",
+  "categories": [
+    { "key": "website-design", "label": "Website Design", "description": "Layout, visual systems, navigation, responsive behavior, and accessibility.", "icon": "layout-template", "order": 1 },
+    { "key": "content-and-languages", "label": "Content & Languages", "description": "Editable copy, structured publishing, localization, and content experiences.", "icon": "languages", "order": 2 },
+    { "key": "assets-and-media", "label": "Assets & Media", "description": "Project images, video, galleries, generation, and delivery optimization.", "icon": "images", "order": 3 },
+    { "key": "seo-and-discoverability", "label": "SEO & Discoverability", "description": "Metadata, structured data, sitemaps, answer engines, and search visibility.", "icon": "search", "order": 4 },
+    { "key": "marketing-and-analytics", "label": "Marketing & Analytics", "description": "Leads, newsletters, campaigns, measurement, funnels, and insights.", "icon": "chart-no-axes-combined", "order": 5 },
+    { "key": "store-and-orders", "label": "Store & Orders", "description": "Catalogs, carts, checkout, orders, payments, and fulfillment.", "icon": "shopping-bag", "order": 6 },
+    { "key": "services-and-bookings", "label": "Services & Bookings", "description": "Services, advisors, availability, appointments, and booking journeys.", "icon": "calendar-check", "order": 7 },
+    { "key": "astrology-experiences", "label": "Astrology Experiences", "description": "Charts, Panchang, horoscopes, compatibility, reports, and related experiences.", "icon": "sparkles", "order": 8 },
+    { "key": "customer-accounts", "label": "Customer Accounts", "description": "Identity, profiles, privacy, wallets, messaging, and protected account areas.", "icon": "circle-user-round", "order": 9 },
+    { "key": "integrations-and-automation", "label": "Integrations & Automation", "description": "External providers, webhooks, notifications, consent, and business workflows.", "icon": "plug", "order": 10 },
+    { "key": "fix-and-improve", "label": "Fix & Improve", "description": "Diagnosis, repairs, performance, data integrity, access, and release readiness.", "icon": "wrench", "order": 11 }
+  ]
+}

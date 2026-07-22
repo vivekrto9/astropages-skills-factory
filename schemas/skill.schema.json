@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://astropages.com/schemas/builder-skills/v1/skill.schema.json",
+  "title": "Builder internal AgentSkill",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "version", "description", "activityLabel", "compatibleAiRuntime", "entry", "resources", "intents"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$", "maxLength": 64 },
+    "version": { "type": "string", "pattern": "^(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)\\.(?:0|[1-9][0-9]*)$" },
+    "description": { "type": "string", "minLength": 1, "maxLength": 500, "pattern": "^[^\\u0000-\\u001F\\u007F-\\u009F]+$" },
+    "activityLabel": { "type": "string", "minLength": 1, "maxLength": 80, "pattern": "^(?=.*[\\p{L}\\p{N}\\p{P}\\p{S}])(?!.*\\p{C}).+$" },
+    "compatibleAiRuntime": { "const": ">=1.24.0 <1.25.0" },
+    "entry": { "const": "SKILL.md" },
+    "resources": { "type": "array", "maxItems": 64, "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*(?:/[A-Za-z0-9][A-Za-z0-9._-]*)*$" } },
+    "intents": { "type": "array", "minItems": 1, "maxItems": 100, "uniqueItems": true, "items": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" } }
+  }
+}

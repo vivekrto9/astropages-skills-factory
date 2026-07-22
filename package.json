@@ -1,0 +1,22 @@
+{
+  "name": "astropages-skills-factory",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@11.7.0",
+  "engines": {
+    "node": ">=24.11.1 <26"
+  },
+  "scripts": {
+    "sync:catalog": "node scripts/sync-approved-inventory.mjs",
+    "test": "node --test",
+    "validate": "node scripts/factory.mjs validate",
+    "build": "node scripts/factory.mjs build",
+    "audit": "node scripts/factory.mjs audit",
+    "safety": "node scripts/factory.mjs safety",
+    "reproducibility": "node scripts/factory.mjs reproducibility"
+  },
+  "dependencies": {
+    "ajv": "8.20.0"
+  }
+}
