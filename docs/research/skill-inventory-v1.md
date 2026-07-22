@@ -6,9 +6,9 @@ Date: 2026-07-20
 
 ## Purpose and taxonomy
 
-This Milestone 1 inventory proposes the public browsing and routing surface for Builder Skills v1. It is research input for later schemas and skill packages; it is not a runtime catalog, a bundle, or an implementation claim.
+This Milestone 1 inventory proposes the public browsing and explicit-selection surface for Builder Skills v1. It is research input for later schemas and skill packages; it is not a runtime catalog, a bundle, or an implementation claim.
 
-The inventory preserves the architecture's three layers. The 11 ordered public categories are navigation aids. The 90 granular public intents are stable routing units expressed as lowercase hyphen keys. The 29 internal skills are private, cohesive implementation packages and every internal record is explicitly `public: false`. Client experiences may expose categories and granular intents, but must not enumerate internal skill names.
+The inventory preserves the architecture's three layers. The 11 ordered public categories are navigation aids. The 90 granular public intents are stable user-selectable shortcuts expressed as lowercase hyphen keys. The 29 internal skills are private, cohesive implementation packages and every internal record is explicitly `public: false`. Client experiences may expose categories and granular intents, but must not enumerate internal skill names.
 
 The exact category order is:
 
@@ -24,7 +24,7 @@ The exact category order is:
 10. Integrations & Automation
 11. Fix & Improve
 
-The machine-readable proposal is `docs/research/skill-inventory-v1.json`. Its category, intent, evidence-family, and internal-skill arrays are deliberately ordered for deterministic review. Aliases are a global routing namespace: after Unicode NFKC and lowercase normalization, they must remain unique and must not collide with normalized intent keys or labels.
+The machine-readable proposal is `docs/research/skill-inventory-v1.json`. Its category, intent, evidence-family, and internal-skill arrays are deliberately ordered for deterministic review. Aliases are searchable Builder-picker metadata, not a Control Plane or AI routing mechanism. After Unicode NFKC and lowercase normalization they remain unique so picker results are unambiguous and must not collide with normalized intent keys or labels.
 
 ## Evidence and uncertainty
 

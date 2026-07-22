@@ -1,6 +1,6 @@
 ---
 name: responsive-accessibility-and-performance
-description: Use when frontend work must remain usable across viewports, keyboard and assistive technology, reduced-motion preferences, and measured loading constraints.
+description: Use this skill when a user wants frontend work or a quality audit that affects viewport behavior, keyboard or assistive access, motion, or loading, including quality needs implicit in visual changes; not for server-only changes with no user-facing impact.
 ---
 
 # Verify Cross-Cutting UI Quality

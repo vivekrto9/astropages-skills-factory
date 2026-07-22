@@ -1,6 +1,6 @@
 ---
 name: astrology-provider-adapters
-description: Use when a generated-site astrology feature needs a current AstrologyAPI capability, input schema, response contract, or server-side provider adapter.
+description: Use this skill when a user wants provider-backed astrology data and the current AstrologyAPI capability or contract must be discovered, including implicit data needs behind astrology features; not for visual-only presentation or credential provisioning.
 ---
 
 # Build an Astrology Provider Adapter

@@ -1,6 +1,6 @@
 ---
 name: charts-transits-synastry-and-compatibility
-description: Use when presenting natal charts, transit experiences, synastry, compatibility, or related provider-backed astrology results.
+description: Use this skill when a user wants natal charts, transit forecasts, synastry, or compatibility experiences, including interpretation and comparison states around provider-backed results; not for generic data charts or provider-contract discovery alone.
 ---
 
 # Present Chart-Based Experiences Truthfully

@@ -16,7 +16,11 @@
       "activation": {
         "mode": "explicit",
         "selectedIntentKey": "refresh-homepage",
-        "expectedIntentKey": "refresh-homepage"
+        "expectedInvokedSkills": [
+          "generated-site-discovery-and-routing",
+          "astro-ui-and-design-system",
+          "responsive-accessibility-and-performance"
+        ]
       },
       "requiredOutcomes": [
         "Inspect the target repository and name the route, component, content, style, and test owners before editing.",
@@ -48,14 +52,18 @@
         "reuseBaselineOutput": false
       },
       "activation": {
-        "mode": "automatic-inference",
+        "mode": "native-openhands",
         "selectedIntentKey": null,
-        "expectedIntentKey": "add-daily-panchang"
+        "expectedInvokedSkills": [
+          "generated-site-discovery-and-routing",
+          "astrology-provider-adapters",
+          "horoscope-panchang-numerology-and-tarot"
+        ]
       },
       "dependencySetup": {
         "toolDependency": "astrologyapi-mcp",
-        "requiredProvenance": "conversation-scoped AI-service proxy attached from the pinned intent dependency; Control Plane supplies enablement only",
-        "currentAvailability": "unavailable-before-milestone-8",
+        "requiredProvenance": "OpenHands invokes the provider-adapter skill at runtime, then uses only the AI-service compact AstrologyAPI gateway attached to the pinned release",
+        "currentAvailability": "compact-gateway-available-when-configured",
         "whenAvailable": {
           "expectedStatus": "implementation-eligible",
           "requireObservedOfficialToolSchema": true
@@ -63,13 +71,12 @@
         "whenUnavailable": {
           "expectedStatus": "actionable-blocked",
           "generateProviderCode": false,
-          "fabricateToolOutput": false,
-          "rerunAfterMilestone": 8
+          "fabricateToolOutput": false
         }
       },
       "requiredOutcomes": [
-        "At the current Milestone 2 dependency state, return an actionable blocked result, generate no provider code, fabricate no tool output, and defer a successful run until after the Milestone 8 conversation-scoped proxy exists.",
-        "Only when the required conversation-scoped AstrologyAPI MCP proxy is available, inspect its observed official tool schema during builder work before selecting a capability.",
+        "When the compact AstrologyAPI capability gateway is unavailable, return an actionable blocked result, generate no provider code, and fabricate no tool output.",
+        "When the compact AstrologyAPI capability gateway is available, search and describe current official capabilities during builder work before selecting one, and test only with bounded non-sensitive inputs when necessary.",
         "Consume the existing catalog-managed reserved X_ASTROLOGYAPI_KEY server binding through the target repository's current secret resolver.",
         "Carry date, location, and time zone through validation, provider mapping, and display.",
         "Return distinct structured catalog-integration-not-ready, invalid-input, provider-failure, no-data, and success states; make no live call when the binding is absent.",
@@ -104,7 +111,11 @@
       "activation": {
         "mode": "explicit",
         "selectedIntentKey": "integrate-unsupported-provider",
-        "expectedIntentKey": "integrate-unsupported-provider"
+        "expectedInvokedSkills": [
+          "research-external-integrations",
+          "integrations-webhooks-automation-and-consent",
+          "runtime-config-secrets-and-provider-readiness"
+        ]
       },
       "requiredOutcomes": [
         "Research current official vendor documentation and record version, authentication, permissions, mechanics, limits, and unresolved facts.",

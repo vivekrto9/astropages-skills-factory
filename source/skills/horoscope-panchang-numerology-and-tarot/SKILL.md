@@ -1,6 +1,6 @@
 ---
 name: horoscope-panchang-numerology-and-tarot
-description: Use when presenting horoscope, Panchang, numerology, tarot, or related provider-backed astrology data in a generated site.
+description: Use this skill when a user wants horoscope, Panchang, numerology, or tarot experiences, including truthful loading, unavailable, and result states around provider-backed data; not for provider-contract discovery or unrelated divination copy.
 ---
 
 # Present Astrology Experiences Truthfully

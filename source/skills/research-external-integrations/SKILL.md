@@ -1,6 +1,6 @@
 ---
 name: research-external-integrations
-description: Use when a requested external provider is not represented by the pinned skills bundle or its current authentication and API contract is unknown.
+description: Use this skill when a user requests an external provider whose current official authentication or API contract is unknown or unsupported, including implicit vendor research needs; not for an already verified supported integration.
 ---
 
 # Research an Unbundled Provider

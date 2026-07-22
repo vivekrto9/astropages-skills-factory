@@ -1,6 +1,6 @@
 ---
 name: astrology-reports-and-ai-chat
-description: Use when building persisted astrology reports or conversational explanations grounded in verified astrology data.
+description: Use this skill when a user wants saved astrology reports or conversational explanations grounded in verified astrology data, including requests for personalized narrative output; not for standalone calculations or generic ungrounded chat.
 ---
 
 # Ground Reports and Astrology Chat

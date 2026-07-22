@@ -47,13 +47,6 @@ async function skillText(id) {
   return readText(`source/skills/${id}/SKILL.md`);
 }
 
-function exactBoundaryMatch(text, term) {
-  const normalizedText = normalizeRoutingTerm(text);
-  const normalizedTerm = normalizeRoutingTerm(term);
-  const escaped = normalizedTerm.replace(/[.*+?^${}()|[\]\\]/gu, '\\$&');
-  return new RegExp(`(?<![\\p{L}\\p{N}])${escaped}(?![\\p{L}\\p{N}])`, 'u').test(normalizedText);
-}
-
 test('the evaluated three intents and eight private skills remain exact catalog slices', async () => {
   const { intents } = await readJson('source/catalog/intents.json');
   const { skills } = await readJson('source/catalog/skills.json');
@@ -179,9 +172,9 @@ test('three-slice eval contract is deterministic and forbids fake success claims
   const baselineById = new Map(baseline.scenarios.map((scenario) => [scenario.id, scenario]));
   const fixtureCommit = '7e36d4b875c53c9690fa17be699bf17dea9fa8a8';
   const activationByIntent = {
-    'refresh-homepage': { mode: 'explicit', selectedIntentKey: 'refresh-homepage', expectedIntentKey: 'refresh-homepage' },
-    'add-daily-panchang': { mode: 'automatic-inference', selectedIntentKey: null, expectedIntentKey: 'add-daily-panchang' },
-    'integrate-unsupported-provider': { mode: 'explicit', selectedIntentKey: 'integrate-unsupported-provider', expectedIntentKey: 'integrate-unsupported-provider' },
+    'refresh-homepage': { mode: 'explicit', selectedIntentKey: 'refresh-homepage', expectedInvokedSkills: ['generated-site-discovery-and-routing', 'astro-ui-and-design-system', 'responsive-accessibility-and-performance'] },
+    'add-daily-panchang': { mode: 'native-openhands', selectedIntentKey: null, expectedInvokedSkills: ['generated-site-discovery-and-routing', 'astrology-provider-adapters', 'horoscope-panchang-numerology-and-tarot'] },
+    'integrate-unsupported-provider': { mode: 'explicit', selectedIntentKey: 'integrate-unsupported-provider', expectedInvokedSkills: ['research-external-integrations', 'integrations-webhooks-automation-and-consent', 'runtime-config-secrets-and-provider-readiness'] },
   };
   assert.equal(contract.schemaVersion, '1');
   assert.deepEqual(contract.scenarios.map(({ intentKey }) => intentKey), Object.keys(EXPECTED_INTENTS));
@@ -207,8 +200,8 @@ test('three-slice eval contract is deterministic and forbids fake success claims
   const panchang = contract.scenarios.find(({ intentKey }) => intentKey === 'add-daily-panchang');
   assert.deepEqual(panchang.dependencySetup, {
     toolDependency: 'astrologyapi-mcp',
-    requiredProvenance: 'conversation-scoped AI-service proxy attached from the pinned intent dependency; Control Plane supplies enablement only',
-    currentAvailability: 'unavailable-before-milestone-8',
+    requiredProvenance: 'OpenHands invokes the provider-adapter skill at runtime, then uses only the AI-service compact AstrologyAPI gateway attached to the pinned release',
+    currentAvailability: 'compact-gateway-available-when-configured',
     whenAvailable: {
       expectedStatus: 'implementation-eligible',
       requireObservedOfficialToolSchema: true,
@@ -217,7 +210,6 @@ test('three-slice eval contract is deterministic and forbids fake success claims
       expectedStatus: 'actionable-blocked',
       generateProviderCode: false,
       fabricateToolOutput: false,
-      rerunAfterMilestone: 8,
     },
   });
   const serialized = JSON.stringify(contract);
@@ -228,7 +220,7 @@ test('three-slice eval contract is deterministic and forbids fake success claims
   assert.doesNotMatch(serialized, /https:\/\/[^" ]*\/api\//iu);
 });
 
-test('Daily Panchang alias stays inventory-aligned, collision-free, and resolves the exact baseline prompt only at boundaries', async () => {
+test('Daily Panchang public picker metadata stays collision-free while runtime activation remains OpenHands-native', async () => {
   const inventory = await readJson('docs/research/skill-inventory-v1.json');
   const runtime = await readJson('source/catalog/intents.json');
   const baseline = await readJson('evals/baselines/scenarios.json');
@@ -260,16 +252,16 @@ test('Daily Panchang alias stays inventory-aligned, collision-free, and resolves
   }
   assert.equal(inventory.intents.length, 90);
 
-  const inferred = inventory.intents.filter((intent) => [intent.key, intent.label, ...intent.aliases]
-    .some((term) => exactBoundaryMatch(baselinePrompt, term)));
-  assert.deepEqual(inferred.map(({ key }) => key), ['add-daily-panchang']);
   assert.equal(forwardScenario.prompt, baselinePrompt);
   assert.deepEqual(forwardScenario.activation, {
-    mode: 'automatic-inference',
+    mode: 'native-openhands',
     selectedIntentKey: null,
-    expectedIntentKey: 'add-daily-panchang',
+    expectedInvokedSkills: [
+      'generated-site-discovery-and-routing',
+      'astrology-provider-adapters',
+      'horoscope-panchang-numerology-and-tarot',
+    ],
   });
-  assert.equal(exactBoundaryMatch('predaily panchangpost', 'daily panchang'), false);
 });
 
 test('template evidence pins only real slice-relevant files at full commits', async () => {

@@ -1,6 +1,6 @@
 ---
 name: generated-site-discovery-and-routing
-description: Use when a generated AstroPages site must be inspected before changing a route, page, component, content binding, runtime path, or project-owned contract.
+description: Use this skill when a request may change a generated AstroPages route, page, component, content binding, runtime path, or project-owned contract, including cases where ownership is implicit or unclear; not for questions unrelated to the generated site.
 ---
 
 # Discover the Generated Site

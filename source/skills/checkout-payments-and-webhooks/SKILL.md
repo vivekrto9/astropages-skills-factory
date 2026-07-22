@@ -1,6 +1,6 @@
 ---
 name: checkout-payments-and-webhooks
-description: Use when implementing checkout, payment initiation, payment status, refunds, or verified payment webhooks in a generated site.
+description: Use this skill when a user wants checkout or payment behavior, including payment initiation, status, refunds, and verified payment webhooks; not for catalog, cart, or order-display work that does not cross a payment boundary.
 ---
 
 # Enforce the Payment Boundary

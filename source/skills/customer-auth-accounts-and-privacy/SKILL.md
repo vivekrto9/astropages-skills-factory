@@ -1,6 +1,6 @@
 ---
 name: customer-auth-accounts-and-privacy
-description: Use when adding customer sign-in, sessions, profiles, protected account data, consent controls, export, or deletion behavior.
+description: Use this skill when a user wants customer sign-in, sessions, profiles, protected account data, consent controls, export, or deletion, including features that implicitly require customer identity; not for generated-site administrator access.
 ---
 
 # Protect Customer Identity and Data

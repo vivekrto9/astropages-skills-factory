@@ -144,6 +144,64 @@ test('validate rejects missing intent-to-skill references', async () => {
   assert.match(result.stderr, /intent refresh-homepage.*unknown skill missing-skill/i);
 });
 
+test('validate requires a human-facing activity label for every internal skill', async () => {
+  const root = await fixture();
+  const file = path.join(root, 'source/catalog/skills.json');
+  const catalog = JSON.parse(await readFile(file, 'utf8'));
+  delete catalog.skills[0].activityLabel;
+  await writeJson(file, catalog);
+  const result = await run('validate', root);
+  assert.notEqual(result.code, 0);
+  assert.match(result.stderr, /skills\[0\]\.activityLabel|activityLabel.*required|missing fields: activityLabel/i);
+});
+
+test('validate rejects internal skill activity labels without visible characters', async (t) => {
+  for (const [name, activityLabel] of [
+    ['whitespace-only', '   '],
+    ['format-character-only', '\u200B'],
+    ['embedded-format-character', 'Building\u200Bsite'],
+  ]) {
+    await t.test(name, async () => {
+      const root = await fixture();
+      const file = path.join(root, 'source/catalog/skills.json');
+      const catalog = JSON.parse(await readFile(file, 'utf8'));
+      catalog.skills[0].activityLabel = activityLabel;
+      await writeJson(file, catalog);
+      const result = await run('validate', root);
+      assert.notEqual(result.code, 0);
+      assert.match(result.stderr, /skills\[0\]\.activityLabel|activityLabel.*visible|activityLabel.*format/i);
+    });
+  }
+});
+
+test('validate accepts activity labels with combining marks and international separators', async (t) => {
+  for (const [name, activityLabel] of [
+    ['combining-mark', 'Cafe\u0301 builder'],
+    ['non-ascii-separator', 'Building\u2003site'],
+  ]) {
+    await t.test(name, async () => {
+      const root = await fixture();
+      const file = path.join(root, 'source/catalog/skills.json');
+      const catalog = JSON.parse(await readFile(file, 'utf8'));
+      catalog.skills[0].activityLabel = activityLabel;
+      await writeJson(file, catalog);
+      const result = await run('validate', root);
+      assert.equal(result.code, 0, result.stderr);
+    });
+  }
+});
+
+test('validate requires model-native skill selection descriptions', async () => {
+  const root = await fixture();
+  await writeFile(
+    path.join(root, 'source/skills/test-site-routing/SKILL.md'),
+    '---\nname: test-site-routing\ndescription: Use when locating generated-site routes before a bounded edit.\n---\n\n# Instructions\n',
+  );
+  const result = await run('validate', root);
+  assert.notEqual(result.code, 0);
+  assert.match(result.stderr, /frontmatter description must start with "Use this skill when\s*"/i);
+});
+
 test('validate rejects traversal and undeclared skill resources', async (t) => {
   await t.test('traversal', async () => {
     const root = await fixture();
@@ -575,6 +633,8 @@ test('build emits the exact contract with valid hashes and no attestation inside
   assert.equal(result.code, 0, result.stderr);
   const bundle = path.join(root, 'dist/bundle');
   const manifest = JSON.parse(await readFile(path.join(bundle, 'bundle.manifest.json'), 'utf8'));
+  const bundledSkillCatalog = JSON.parse(await readFile(path.join(bundle, 'catalog/skills.json'), 'utf8'));
+  assert.equal(bundledSkillCatalog.skills[0].activityLabel, 'Inspecting site structure');
   assert.deepEqual(manifest.files.map(({ path: file }) => file), [
     '.agents/skills/test-site-routing/SKILL.md',
     '.agents/skills/test-site-routing/references/contracts.md',

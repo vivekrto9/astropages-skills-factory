@@ -1,6 +1,6 @@
 ---
 name: seo-aeo-and-structured-data
-description: Use when improving metadata, canonical URLs, sitemaps, robots behavior, structured data, or answer-engine discoverability.
+description: Use this skill when a user wants better search or answer-engine discoverability, including requests that imply metadata, canonicals, sitemaps, robots rules, links, or structured data; not for on-site search or unsupported ranking guarantees.
 ---
 
 # Publish Verifiable Discoverability Signals

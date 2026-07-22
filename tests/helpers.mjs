@@ -46,6 +46,7 @@ export async function makeFactory(root) {
     id: 'test-site-routing',
     version: '1.0.0',
     description: 'Locate the generated-site change surface.',
+    activityLabel: 'Inspecting site structure',
     compatibleAiRuntime: '>=1.24.0 <1.25.0',
     entry: 'SKILL.md',
     resources: ['references/contracts.md'],
@@ -88,7 +89,7 @@ export async function makeFactory(root) {
   await mkdir(path.join(root, 'source/skills/test-site-routing/references'), { recursive: true });
   await writeFile(
     path.join(root, 'source/skills/test-site-routing/SKILL.md'),
-    '---\nname: test-site-routing\ndescription: Use when locating generated-site routes before a bounded edit.\n---\n\n# Test Site Routing\n\nInspect the current project before editing.\n',
+    '---\nname: test-site-routing\ndescription: Use this skill when a request may affect generated-site routes or ownership boundaries; do not use it for isolated prose-only questions.\n---\n\n# Test Site Routing\n\nInspect the current project before editing.\n',
   );
   await writeFile(
     path.join(root, 'source/skills/test-site-routing/references/contracts.md'),

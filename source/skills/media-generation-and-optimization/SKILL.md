@@ -1,6 +1,6 @@
 ---
 name: media-generation-and-optimization
-description: Use when creating, transforming, cropping, compressing, or responsively delivering visual media for a generated site.
+description: Use this skill when a user wants visual media created, transformed, cropped, compressed, or delivered responsively, including image-quality work implied by page redesigns; not for selecting an unchanged existing project asset.
 ---
 
 # Produce Efficient Accessible Media

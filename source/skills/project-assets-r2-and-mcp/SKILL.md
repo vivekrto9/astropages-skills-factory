@@ -1,6 +1,6 @@
 ---
 name: project-assets-r2-and-mcp
-description: Use when selecting, uploading, replacing, referencing, or governing project-owned media through the existing asset and R2 workflow.
+description: Use this skill when a user wants project-owned media selected, uploaded, replaced, referenced, or audited through the existing asset workflow, including missing-asset requests; not for generating new pixels or unrelated object storage.
 ---
 
 # Use Governed Project Assets

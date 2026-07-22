@@ -1,6 +1,6 @@
 ---
 name: emdash-content-and-release
-description: Use when editing governed site content, adding editable structures, or operating the generated site's existing content release lifecycle.
+description: Use this skill when a user wants governed site copy or editable content changed, including requests to draft, publish, localize, or add structures through the existing content lifecycle; not for hard-coded interface labels with no EmDash ownership.
 ---
 
 # Keep Content Governed by EmDash

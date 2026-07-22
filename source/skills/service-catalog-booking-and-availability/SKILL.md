@@ -1,6 +1,6 @@
 ---
 name: service-catalog-booking-and-availability
-description: Use when adding services, schedules, availability, appointment selection, rescheduling, cancellation, or booking journeys.
+description: Use this skill when a user wants services, schedules, capacity, availability, appointment selection, rescheduling, cancellation, or booking journeys, including requests that imply reservable time; not for product checkout with no appointment.
 ---
 
 # Build Consistent Booking Flows

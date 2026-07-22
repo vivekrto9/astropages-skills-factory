@@ -1,6 +1,6 @@
 ---
 name: wallet-chat-and-community
-description: Use when implementing account-scoped wallet displays, messaging, conversations, moderation, or community interactions.
+description: Use this skill when a user wants account-scoped wallet views, messaging, conversations, moderation, or community interactions, including customer features that imply shared or stored social state; not for a generic support form or ungrounded AI chat.
 ---
 
 # Bound Interactive Account Features

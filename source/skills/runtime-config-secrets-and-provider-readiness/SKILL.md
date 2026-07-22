@@ -1,6 +1,6 @@
 ---
 name: runtime-config-secrets-and-provider-readiness
-description: Use when generated-site code needs a Project Secret declaration, missing-configuration preview, provider readiness state, or setup path.
+description: Use this skill when a user wants an external provider that needs Project Secrets, setup guidance, or a safe missing-configuration state, including implicit readiness needs; not for obtaining, provisioning, or exposing credential values.
 ---
 
 # Declare Secrets and Setup States

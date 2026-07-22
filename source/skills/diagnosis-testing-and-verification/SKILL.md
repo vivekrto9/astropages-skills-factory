@@ -1,6 +1,6 @@
 ---
 name: diagnosis-testing-and-verification
-description: Use when a generated-site bug, regression, performance issue, failing check, or uncertain implementation needs root-cause diagnosis and evidence.
+description: Use this skill when a user reports broken, regressed, slow, or uncertain generated-site behavior or asks for proof that a change works, including unexplained failing checks; not for speculative fixes before a symptom is traced.
 ---
 
 # Diagnose Before Changing Behavior

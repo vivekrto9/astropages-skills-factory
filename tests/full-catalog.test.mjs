@@ -35,6 +35,7 @@ test('runtime catalog exactly publishes the approved 90 public intents and 29 pr
     assert.equal(record.version, '1.0.0');
     assert.equal(record.compatibleAiRuntime, '>=1.24.0 <1.25.0');
     assert.equal(record.entry, 'SKILL.md');
+    assert.match(record.activityLabel, /^(?=.*[\p{L}\p{N}\p{P}\p{S}])(?!.*\p{C}).{1,80}$/u);
     assert.deepEqual(record.intents, inventory.intents
       .filter(({ internalSkills }) => internalSkills.includes(record.id))
       .map(({ key }) => key));
@@ -79,7 +80,7 @@ test('public intent copy stays separate from private skill identifiers and imple
   for (const skill of skills) {
     assert.doesNotMatch(publicCopy, new RegExp(skill.id, 'u'));
     const text = await readText(`source/skills/${skill.id}/${skill.entry}`);
-    assert.match(text, /^---\nname: [a-z0-9-]+\ndescription: Use when /u);
+    assert.match(text, /^---\nname: [a-z0-9-]+\ndescription: Use this skill when /u);
     if (preservedEvaluatedSkills.has(skill.id)) continue;
     assert.match(text, /inspect|trace|confirm|inventory/iu, `${skill.id} must require target inspection`);
     assert.match(text, /smallest|bounded|requested|within scope/iu, `${skill.id} must bound the change`);
@@ -102,4 +103,41 @@ test('complete catalog and skills contain no legacy branding or secret values', 
 
   assert.doesNotMatch(text, /PREVIEW_ASTROCONNECT_|PREVIEW_ASTRAGURU_|PROD_ASTRAGURU_|astropages-capabilities/iu);
   assert.doesNotMatch(text, /(?:api[_-]?key|token|secret|password)\s*[:=]\s*["'][^"']{8,}["']/iu);
+});
+
+test('foundation activates genuinely relevant skills without exposing routing internals', async () => {
+  const foundation = await readText('source/foundation/AGENTS.md');
+  assert.match(foundation, /inspect (?:all )?available skills for every request/i);
+  assert.match(foundation, /invoke each genuinely relevant skill before implementation/i);
+  assert.match(foundation, /explicitly selected skills?.*mandatory/i);
+  assert.match(foundation, /supporting skills/i);
+  assert.match(foundation, /weak keyword overlap/i);
+  assert.doesNotMatch(foundation, /Use only the internal skills mapped by the pinned public intent/i);
+});
+
+test('all skill descriptions encode user intent, implicit cases, and meaningful exclusions', async () => {
+  const { skills } = await readJson('source/catalog/skills.json');
+  const genericClause = /^(?:implicit|related|relevant|other|unrelated) (?:cases|requests|work)$/iu;
+  const words = (clause) => clause.match(/[\p{L}\p{N}]+(?:[-'][\p{L}\p{N}]+)*/gu) ?? [];
+
+  for (const skill of skills) {
+    const text = await readText(`source/skills/${skill.id}/${skill.entry}`);
+    const description = text.match(/^description: (.+)$/mu)?.[1] ?? '';
+    const selection = description.match(
+      /^Use this skill when (?<intent>.+?), including (?<implicit>.+?); not for (?<exclusion>.+)\.$/u,
+    );
+
+    assert.ok(selection?.groups, `${skill.id} must encode intent, implicit cases, and a near-miss exclusion`);
+    const { intent, implicit, exclusion } = selection.groups;
+    assert.match(intent, /\b(?:a user|user request|a request)\b/iu, `${skill.id} must frame selection as user intent`);
+    for (const [kind, clause, minimumWords, minimumCharacters] of [
+      ['intent', intent, 6, 30],
+      ['implicit-case', implicit, 2, 15],
+      ['near-miss exclusion', exclusion, 2, 20],
+    ]) {
+      assert.ok(words(clause).length >= minimumWords, `${skill.id} ${kind} clause is too generic: ${clause}`);
+      assert.ok(clause.length >= minimumCharacters, `${skill.id} ${kind} clause is too generic: ${clause}`);
+      assert.doesNotMatch(clause, genericClause, `${skill.id} ${kind} clause is generic: ${clause}`);
+    }
+  }
 });

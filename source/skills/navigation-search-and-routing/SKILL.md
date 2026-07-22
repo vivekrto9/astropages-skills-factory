@@ -1,6 +1,6 @@
 ---
 name: navigation-search-and-routing
-description: Use when adding or changing public navigation, route relationships, breadcrumbs, menus, or on-site search in a generated site.
+description: Use this skill when a user wants public navigation, menus, breadcrumbs, route relationships, or on-site search, including discoverability problems that imply wayfinding changes; not for server API routing with no visitor navigation.
 ---
 
 # Connect Routes and Search

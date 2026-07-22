@@ -1,6 +1,6 @@
 ---
 name: d1-migrations-and-data-integrity
-description: Use when changing generated-site D1 schema, constraints, indexes, persistence invariants, or data repair behavior.
+description: Use this skill when a user request changes persisted D1 data shape, integrity, indexes, or repair behavior, including features that implicitly need durable records; not for read-only presentation over an unchanged schema.
 ---
 
 # Evolve Generated-Site Data Safely

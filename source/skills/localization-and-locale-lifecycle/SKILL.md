@@ -1,6 +1,6 @@
 ---
 name: localization-and-locale-lifecycle
-description: Use when adding a locale, translating governed content, or changing locale-aware routes, fallbacks, formatting, or language selection.
+description: Use this skill when a user wants another language or locale-aware behavior, including translated content, routes, formatting, selection, and fallback lifecycle; not for a copy edit that stays in one existing locale.
 ---
 
 # Implement Locale Lifecycle

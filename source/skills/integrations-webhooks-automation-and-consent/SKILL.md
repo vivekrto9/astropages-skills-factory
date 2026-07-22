@@ -1,6 +1,6 @@
 ---
 name: integrations-webhooks-automation-and-consent
-description: Use when implementing a verified external provider operation, webhook, background automation, or consent-aware data exchange in a generated site.
+description: Use this skill when a user wants a verified external-provider action, webhook, automation, or consent-aware data exchange, including workflows implied by moving data between systems; not for researching an unknown vendor contract by itself.
 ---
 
 # Implement Integration Mechanics

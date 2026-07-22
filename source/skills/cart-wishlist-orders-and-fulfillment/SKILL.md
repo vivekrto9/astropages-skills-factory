@@ -1,6 +1,6 @@
 ---
 name: cart-wishlist-orders-and-fulfillment
-description: Use when implementing cart, wishlist, order history, order state, or fulfillment behavior after catalog selection.
+description: Use this skill when a user wants shoppers to save products, assemble purchases, track orders, or follow fulfillment states, including implied post-catalog commerce journeys; not for product merchandising or payment-provider mechanics alone.
 ---
 
 # Preserve Commerce State Correctly

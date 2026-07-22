@@ -1,6 +1,6 @@
 ---
 name: advisor-marketplace-and-portals
-description: Use when building advisor discovery, profiles, marketplace filters, or protected advisor and customer portal workflows.
+description: Use this skill when a user wants advisor discovery, profiles, marketplace filters, or protected advisor and customer portals, including requests that imply role-specific journeys; not for a general customer account with no advisor marketplace behavior.
 ---
 
 # Separate Marketplace and Portal Trust

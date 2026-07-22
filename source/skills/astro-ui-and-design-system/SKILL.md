@@ -1,6 +1,6 @@
 ---
 name: astro-ui-and-design-system
-description: Use when changing the visual hierarchy, layout, typography, color, components, or interaction styling of an Astro generated site.
+description: Use this skill when a user wants a visual or interaction-design change to the generated site, including implied layout, hierarchy, typography, color, or component-system work; not for copy-only edits that preserve presentation.
 ---
 
 # Work Within the Site's Design System

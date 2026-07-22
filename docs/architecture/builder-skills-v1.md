@@ -24,10 +24,10 @@ Changes flow in one direction:
 
 ### 2.2 Three distinct taxonomy layers
 
-The public category is a browsing and explanation aid, not an execution unit. A granular intent is the stable routing unit. An internal OpenHands skill is the executable unit loaded into an AI conversation.
+The public category is a browsing and explanation aid, not an execution unit. A granular intent is a stable user-selectable request shortcut. An internal OpenHands skill is the executable unit loaded into an AI conversation.
 
 - **Public category:** stable, human-readable grouping visible in Client.
-- **Granular intent:** versioned identifier selected by deterministic or model-assisted routing, for example `website.navigation.add` or `astrology.panchang.add`.
+- **Granular intent:** versioned identifier a user may explicitly select in Builder, for example `website.navigation.add` or `astrology.panchang.add`.
 - **Internal OpenHands skill:** one implementation-oriented instruction package. It may serve one or more intents and is never exposed as an unrestricted public catalog object.
 
 The approved public categories, in display order, are:
@@ -81,7 +81,7 @@ PR and all non-`main` runs execute `skills_ci`. A `main` run executes `skills_re
 The Control Plane owns these persisted concepts:
 
 - **`builder_skill_builds`:** immutable build tuple of source commit, toolchain identity, manifest `contentSha256`, external tar `artifactSha256`, signature/attestation, and validation result.
-- **`builder_skill_releases`:** immutable release referencing exactly one successful build plus the Admin-assigned, DB-owned semantic version, version-choice mode (`patch`, `minor`, `major`, or `custom`), release notes/changelog, compatibility policy, and public catalog snapshot used by Client and inference.
+- **`builder_skill_releases`:** immutable release referencing exactly one successful build plus the Admin-assigned, DB-owned semantic version, version-choice mode (`patch`, `minor`, `major`, or `custom`), release notes/changelog, compatibility policy, and public catalog snapshot used by Client and explicit intent validation.
 - **`builder_skill_release_events`:** append-only audit events for candidate acceptance, version/notes assignment, promotion, rollback, and other release lifecycle decisions. The exposed resource name is exactly `release_events`; no alternative event resource name is permitted.
 - **Current pointer:** mutable reference keyed by `(environment, channel)`, where channel is exactly `stable` or `canary`, to one row in `builder_skill_releases`.
 - **`builder_chat_sessions.skill_release_id`:** immutable conversation pin to one release after its first assignment.
@@ -96,9 +96,11 @@ Before a new conversation's first skill-aware dispatch, the server-owned `BUILDE
 
 If the pinned release or its verified artifact cannot be loaded, AI fails closed for skill activation and returns a recoverable service error. It must not fall forward to current, fall back to an embedded bundle, or mix skills from releases.
 
-### 4.4 Deterministic intent selection
+### 4.4 Explicit and native selection
 
-Control Plane owns deterministic intent inference against the pinned release's public catalog snapshot. Catalog validation rejects collisions among NFKC/lowercase-normalized intent keys, labels, and aliases. Inference normalizes the user's text with Unicode NFKC and lowercase, then matches only exact word-boundary occurrences of those keys, labels, or aliases; partial-substring matches are forbidden. An explicit user intent/action is authoritative after pinned-catalog validation and is not overridden by inference. Without an explicit user intent/action, a matched intent is high-confidence only when produced by that exact normalized word-boundary rule. Up to three distinct matches can be high-confidence and are returned in deterministic catalog order. Any ambiguous catalog or routing state asks the user to clarify and assigns no activation marker. When there is no explicit or high-confidence inferred intent, AI uses native OpenHands progressive discovery; it still loads only the pinned release and cannot bypass its catalog/tool constraints.
+Control Plane validates only public intents explicitly selected by the user against the pinned release's catalog snapshot. It never infers intents, internal skills, or MCP dependencies from prompt text. Up to three explicit intents are accepted and mapped deterministically in catalog order. With no explicit selection, Control Plane dispatches native mode with empty intent, mandatory-skill, and dependency lists.
+
+AI loads every internal AgentSkill in the verified pinned release into OpenHands. Skill names and selection-oriented descriptions are available to the model, while full instructions load only through OpenHands `invoke_skill`. OpenHands chooses relevant skills during the real coding run. Historical `inferred` conversation data remains structurally resumable but executes as native selection; no new inferred selection is created.
 
 ## 5. Admin boundary
 
@@ -110,13 +112,13 @@ Admin cannot create, edit, upload, patch, reorder, or delete categories, intents
 
 AI uses OpenHands SDK 1.24 and a verified pinned loader. Control Plane dispatches the persisted `skill_release_id`; AI rejects a continuation whose supplied release differs from the release already bound to that conversation. The loader downloads the pinned artifact through an authenticated Control Plane internal endpoint and verifies the requested release ID, external tar `artifactSha256`, manifest `contentSha256`, every per-file `sha256`, allowed path set, schema/runtime compatibility, and absence of symlinks before extraction. It atomically extracts exactly to `/app/agent_skills/releases/<release-id>` on shared named storage, and mounts that release read-only into the sandbox. No alternate extraction root, partial directory, mutable overlay, or cross-release load is allowed. Cache keys include the release ID and `artifactSha256`; cached content is reverified before use.
 
-Activation uses OpenHands `KeywordTrigger`. Ordinary discovery remains progressive: the router can surface categories, infer granular intents, and ask for clarification. For an authoritative explicit user intent/action or a deterministic high-confidence inferred intent, AI resolves the pinned catalog mapping to internal `Skill` objects, programmatically assigns a collision-resistant unique marker to each object's `KeywordTrigger`, and appends those markers to the outgoing OpenHands message. This guarantees activation without calling an internal skill a user selection. Markers are generated per resolved object, cannot collide with normal text or one another, are not accepted from Client, and are removed from user-visible output and telemetry text. Only internal skills and tool dependencies declared by the effective pinned intent/action mapping may be resolved. Ambiguous or low-confidence routing asks for clarification and receives no guaranteed marker.
+Every pinned skill starts with no keyword trigger, so ordinary selection uses OpenHands-native `invoke_skill` progressive disclosure. For an authoritative explicit public intent, AI deterministically activates its mapped mandatory skills and records them as `user_selected`; all other pinned skills remain available for adaptive supporting invocation and are recorded as `agent_selected` only after a real invocation observation. Native and historical-inferred turns contain no hidden activation marker. Public activity exposes only the human `activityLabel`, source, status, time, and release—not internal IDs or instructions.
 
 Loaded skill instructions are untrusted content with respect to system policy. They cannot raise privileges, bypass tool approvals, access undeclared secrets, alter the release pin, or override platform/system instructions. Loader and activation events record conversation, release, skill ID/version, intent, and outcome without recording secret values.
 
 ## 7. AstrologyAPI MCP at builder time
 
-AstrologyAPI MCP is a server-only, conversation-scoped source of discovery and implementation intelligence. It lets AI inspect the official MCP tools, API capabilities, inputs, and schemas needed to generate a correct server-side runtime integration for the site being built. The browser never receives its credentials, transport endpoint, raw tool registry, or unrestricted invocation access. Control Plane supplies only enablement. The AI service receives `ASTROLOGYAPI_MCP_ENABLED`, `ASTROLOGYAPI_MCP_URL`, and `ASTROLOGYAPI_MCP_KEY` only from trusted AI deployment secret/environment management; key rotation is an AI deployment operation. The AI proxy reads URL/key configuration in service memory and adds `x-astrologyapi-key` only to the outbound MCP request. It never injects the key into the OpenHands environment, skill content, conversation/request payloads, telemetry, or Control Plane. AI attaches MCP only when the effective pinned intent/action mapping declares that dependency, scopes it to that conversation and pinned release, applies policy, timeouts, and rate limits, and closes it on conversation expiry. This platform credential configuration is part of Builder Skills v1 and not Task 11.
+AstrologyAPI MCP is a server-only, conversation-scoped source of discovery and implementation intelligence. AI exposes only three compact gateway tools to OpenHands: search capabilities, describe selected capabilities, and test one current allowlisted capability with bounded inputs/results. The gateway initializes the upstream MCP session, caches its paginated tool catalog briefly, and never attaches the upstream catalog's full schemas to every edit. The browser never receives credentials, transport endpoints, the raw registry, or unrestricted invocation access. The AI service receives `ASTROLOGYAPI_MCP_ENABLED`, `ASTROLOGYAPI_MCP_URL`, and `ASTROLOGYAPI_MCP_KEY` only from trusted deployment secret/environment management, adds the key only to upstream requests, and never injects it into OpenHands, generated code, conversation payloads, logs, or Control Plane. Per-edit total/test-call budgets, concurrency, response-size, timeout, allowlist, and redaction bounds apply. Native unrelated work can proceed if the gateway is disabled; an explicitly required dependency fails clearly. This platform credential configuration is part of Builder Skills v1 and not Task 11.
 
 MCP results help the builder implement an Astrology Experience against supported runtime APIs; MCP itself is not the generated site's runtime or an end-user proxy. Generated runtime calls are server-side, bind the existing Project Secret `X_ASTROLOGYAPI_KEY`, and follow the inspected official contract. Tool output is treated as untrusted data and validated before it influences generated artifacts.
 
@@ -146,11 +148,12 @@ The Client uses an adaptive hybrid interaction rather than a permanent catalog o
 - when intent is broad, ambiguous, or exploratory, the UI shows the 11 public categories as compact suggestions;
 - after category selection, it presents relevant granular actions progressively, not internal skill names;
 - when intent confidence is high, it proceeds directly while showing the chosen action and allowing correction;
-- an explicit user intent/action displays a `Using` indicator, while a deterministic high-confidence inferred intent/action displays an `Auto` indicator;
+- an explicit user intent/action displays `Selected by you`; no automatic chip appears before execution;
+- after an authoritative OpenHands invocation event, Builder may display the skill's human activity label as `Added automatically`;
 - skill, secret, unsupported-integration, loading, retry, and completion states are rendered from structured server events;
 - keyboard access, screen-reader labels, responsive layout, and reduced-motion behavior are acceptance requirements.
 
-The server remains authoritative for release pinning, intent eligibility, activation, secrets, and tool access. An explicit user intent/action from the pinned public catalog is authoritative after Control Plane validation; an inferred `Auto` intent/action cannot override it. Client-supplied release, completion, internal-skill, or tool values are untrusted hints. The UI must not enumerate internal skills or permit an intent/action outside the pinned release.
+The server remains authoritative for release pinning, explicit intent eligibility, invocation evidence, secrets, and tool access. An explicit user intent/action from the pinned public catalog is mandatory after Control Plane validation; with no selection, OpenHands chooses from the complete pinned internal catalog at runtime. Client-supplied release, completion, internal-skill, tool, or claimed invocation values are untrusted. The UI must not enumerate internal skill identifiers or permit an intent/action outside the pinned release.
 
 ## 10. Security and trust boundaries
 
@@ -172,7 +175,8 @@ A release is eligible for promotion only when all required evidence is attached 
 
 - deterministic build and signature/attestation checks pass;
 - schema, taxonomy, safety, secret-manifest, loader compatibility, and unit/integration suites pass;
-- golden intent-routing tests cover NFKC/lowercase normalization, exact word boundaries, explicit precedence, the three-intent cap, no partial-substring matches, and native OpenHands fallback; KeywordTrigger tests meet the versioned threshold with no critical category regression;
+- deterministic tests cover explicit catalog validation, the three-intent cap, mandatory mappings, native requests with no forced markers, and exact sanitized invocation evidence;
+- model activation evaluations exercise the real OpenHands `invoke_skill` path with direct, implicit, conversational/typo, multi-skill, near-miss, and no-skill prompts; scoring uses observed invocations rather than prompt aliases or generated text;
 - adversarial prompt-injection, path traversal, archive bomb, signature/repository spoofing, secret exfiltration, and cross-conversation isolation tests pass;
 - representative end-to-end builder tasks pass for every public category, including accessibility and structured error states;
 - latency, artifact size, token cost, and failure-rate budgets are within the release policy;
@@ -197,11 +201,11 @@ The discarded `astropages-capabilities` repository may be consulted as research 
 0. **Grounding and documentation:** approve architecture, scope, invariants, repository SHAs, worktrees, and the durable ledger. This milestone completes only when specification status and quality review are both `APPROVED`.
 1. **Audit and baselines:** audit repository templates, existing integration/secrets flows, dependencies, native tests, and baseline evidence.
 2. **Factory plus three slices:** implement the deterministic `dist/bundle` contract and validate it through three representative end-to-end category/intent/skill slices.
-3. **Control Plane:** implement `builder_skill_builds`, `builder_skill_releases`, `builder_skill_release_events`/`release_events`, public catalog snapshots, DB-owned versions/notes, current pointers, pre-dispatch `builder_chat_sessions.skill_release_id`, deterministic inference, authorization, and audit.
+3. **Control Plane:** implement `builder_skill_builds`, `builder_skill_releases`, `builder_skill_release_events`/`release_events`, public catalog snapshots, DB-owned versions/notes, current pointers, pre-dispatch `builder_chat_sessions.skill_release_id`, explicit selection validation, native dispatch, authorization, and audit.
 4. **Woodpecker:** implement signed PR/non-main `skills_ci` and main-only `skills_release`, exact repository/purpose verification, dedicated callback credentials, and candidate registration.
 5. **Admin:** implement candidate review, version/notes assignment, promotion, rollback, and immutable evidence views without content editing.
-6. **AI:** implement continuation pin enforcement, authenticated verified extraction to shared `/app/agent_skills/releases/<release-id>` storage, OpenHands SDK 1.24 native fallback, guaranteed unique-marker `KeywordTrigger` activation, and structured events.
-7. **Client:** implement adaptive hybrid discovery, grouped `@` picker, Skills button, `Using`/`Auto` states, Setup cards, accessibility, and `BUILDER_SKILLS_V2_ENABLED` behavior.
+6. **AI:** implement continuation pin enforcement, authenticated verified extraction to shared `/app/agent_skills/releases/<release-id>` storage, OpenHands-native `invoke_skill`, deterministic mandatory activation only for explicit selection, compact MCP discovery, and sanitized structured events.
+7. **Client:** implement grouped `@` picker, Skills button, `Selected by you`/post-invocation `Added automatically` states, capability activity, Setup cards, accessibility, and `BUILDER_SKILLS_V2_ENABLED` behavior.
 8. **MCP and integrations:** implement dependency-gated AstrologyAPI MCP with the exact AI environment variables, official-doc server-side Project Secrets flows, generated-repository commit sync, and `X_ASTROLOGYAPI_KEY` runtime binding.
 9. **Expand:** extend the validated slices across all approved categories/intents, complete evaluation coverage, and meet release acceptance thresholds.
 10. **Cutover and removal:** perform authorized production canaries, staged release/cutover, rollback drills, stability gates, and legacy removal.

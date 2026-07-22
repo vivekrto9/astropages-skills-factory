@@ -1,6 +1,6 @@
 ---
 name: forms-leads-and-newsletters
-description: Use when building or changing contact, lead-capture, inquiry, signup, or newsletter forms in a generated site.
+description: Use this skill when a user wants contact, inquiry, lead-capture, signup, or newsletter forms, including conversion requests that imply collecting visitor details; not for checkout or booking forms governed by their own domain flow.
 ---
 
 # Build Honest Lead Forms

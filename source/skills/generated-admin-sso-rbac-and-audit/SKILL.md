@@ -1,6 +1,6 @@
 ---
 name: generated-admin-sso-rbac-and-audit
-description: Use when changing generated-site admin SSO, privileged sessions, role checks, admin operations, or audit records.
+description: Use this skill when a user wants generated-site administrator access, privileged operations, role checks, or auditability, including back-office features that imply elevated permissions; not for ordinary customer authentication.
 ---
 
 # Secure Generated-Site Administration

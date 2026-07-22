@@ -1,6 +1,6 @@
 ---
 name: transactional-notifications-and-templates
-description: Use when adding or changing event-driven email, SMS, push, or in-app notifications and their maintainable templates.
+description: Use this skill when a user wants event-driven email, SMS, push, or in-app customer notifications and their templates, including reminders implied by booking or order events; not for static page messages or marketing analytics.
 ---
 
 # Send Notifications from Real Events

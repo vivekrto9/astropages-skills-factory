@@ -1,6 +1,6 @@
 ---
 name: product-catalog-and-merchandising
-description: Use when adding or changing products, collections, product detail pages, pricing presentation, filters, or merchandising structures.
+description: Use this skill when a user wants products, collections, product detail pages, pricing presentation, filters, or merchandising, including storefront requests that imply catalog structure; not for checkout, payment, or fulfillment mechanics alone.
 ---
 
 # Build a Truthful Product Catalog

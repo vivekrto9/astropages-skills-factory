@@ -1,6 +1,6 @@
 ---
 name: analytics-events-and-business-insights
-description: Use when adding privacy-aware event measurement, funnels, dashboards, business metrics, or analytics reporting to a generated site.
+description: Use this skill when a user wants to measure behavior, conversions, funnels, or business outcomes, including dashboards implied by a request for performance insight; not for runtime performance profiling or operational logs alone.
 ---
 
 # Measure Defined Business Events
